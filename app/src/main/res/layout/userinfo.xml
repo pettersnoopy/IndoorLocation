@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="@drawable/userbackground"
+        android:paddingTop="@dimen/common_20dp"
+        android:paddingLeft="@dimen/common_10dp"
+        android:paddingBottom="@dimen/common_20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_110dp">
+
+        <ImageView
+            android:id="@id/user_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:src="@drawable/usericon"
+            />
+
+        <LinearLayout
+            android:paddingLeft="@dimen/common_20dp"
+            android:paddingTop="@dimen/common_10dp"
+            android:id="@id/user_info"
+            android:layout_toRightOf="@id/user_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkslategrey"
+                android:text="@string/name">
+            </TextView>
+
+            <LinearLayout
+                android:paddingTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID:" />
+
+                <TextView
+                    android:id="@id/user_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="15158074877"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </LinearLayout>
+
+</LinearLayout>

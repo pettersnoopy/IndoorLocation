@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InsiLocation</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="notify_exit_application">Are you sure exit?</string>
+    <string name="confirm">退出</string>
+    <string name="cancel">取消</string>
+    <string name="unknown_device">unknown_device</string>
+    <string name="ibeacon_measure">iBeacon measure</string>
+    <string name="name">Rosicky</string>
+
+</resources>

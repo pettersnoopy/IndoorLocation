@@ -1,0 +1,104 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="titlebar_icon_leftmargin">20dp</dimen>
+    <dimen name="titlebar_icon_width">35dp</dimen>
+    <dimen name="titlebar_icon_height">35dp</dimen>
+
+    <!-- titlebar -->
+    <dimen name="titlebar_height">60dp</dimen>
+    <dimen name="titlebar_textsize">16sp</dimen>
+    <dimen name="titlebar_opt_margin_right">40dp</dimen>
+    <dimen name="name_title_little">20sp</dimen>
+    <dimen name="movie_title_text">22sp</dimen>
+
+    <!-- 定义tab相关元素尺寸 -->
+    <dimen name="corner_radius">0dp</dimen>
+    <dimen name="tab_space_top">4dp</dimen>
+    <dimen name="tab_space">0dp</dimen>
+    <dimen name="tab_space_plus1">3dp</dimen>
+    <dimen name="tab_space_bottom_line">36sp</dimen>
+    <dimen name="tab_space_unselected_top">6sp</dimen>
+    <dimen name="tab_textsize">13sp</dimen>
+
+    <!-- file list -->
+    <dimen name="titlebar_filetype_width">40dp</dimen>
+    <dimen name="titlebar_filetype_height">50dp</dimen>
+    <dimen name="titlebar_fileinfo_leftmargin">5dp</dimen>
+    <dimen name="lin_filename_height">25dp</dimen>
+    <dimen name="lin_fileinfo_margintop">1dp</dimen>
+    <dimen name="fileinfo_marginleft">5dp</dimen>
+    <dimen name="lin_fileitem_height">60dp</dimen>
+    <dimen name="fileinfo_item_marginright">5dp</dimen>
+    <dimen name="fileinfo_menu_height">60dp</dimen>
+    <dimen name="search_text_height">40dp</dimen>
+    <dimen name="search_file_count_height">35dp</dimen>
+
+    <!-- messagebox begin -->
+    <dimen name="messagebox_header_margintop">-10.5dp</dimen>
+    <dimen name="messagebox_header_height">50dp</dimen>
+    <dimen name="button_textsize">10.99sp</dimen>
+    <!-- messagebox end -->
+
+
+    <!-- dialog -->
+    <dimen name="dialog_title_font_size">14sp</dimen>
+    <dimen name="dialog_detail_font_size">16sp</dimen>
+    <dimen name="dialog_padding">30dip</dimen>
+    <dimen name="dialog_btuuon_font_size">18sp</dimen>
+    <dimen name="dialog_title_font_size_small">16sp</dimen>
+    <dimen name="dialog_detail_size">16sp</dimen>
+    <dimen name="button_margin">12dip</dimen>
+    <dimen name="button_width">112.77dip</dimen>
+    <dimen name="button_height">51dip</dimen>
+    <dimen name="text_body_font_small">10.7sp</dimen>
+    <dimen name="text_body_font_normal">12.7sp</dimen>
+    <dimen name="text_body_font_large">14.7sp</dimen>
+    <dimen name="msg_tag_width">20dp</dimen>
+    <dimen name="msg_tag_height">20dp</dimen>
+    <dimen name="sliding_menu_leftmargin">24dp</dimen>
+    <dimen name="settingitems_marginleft">20dp</dimen>
+    <dimen name="filter_menu_txtsize">16sp</dimen>
+    <dimen name="menu_msg_fliter_width">200dp</dimen>
+    <dimen name="review_filename_height">40dp</dimen>
+    <dimen name="review_request_name_height">40dp</dimen>
+    <dimen name="review_addmember_icon_width">70dp</dimen>
+    <dimen name="review_addmember_icon_height">70dp</dimen>
+    <dimen name="review_gridview_vir_span">10dp</dimen>
+    <dimen name="review_gridview_hor_span">10dp</dimen>
+    
+    <dimen name="listview_item_text_marginLeft">13.0dip</dimen>
+    <dimen name="menu_height_bottom">50.0dip</dimen>
+    <dimen name="menu_edit_height">51.0dip</dimen>
+    
+    <dimen name="group_share_marginleft">60.0dip</dimen>
+    
+    <dimen name="share_item_height">45dp</dimen>
+
+    <dimen name="common_110dp">110dp</dimen>
+    <dimen name="common_100dp">100dp</dimen>
+    <dimen name="common_90dp">90dp</dimen>
+    <dimen name="common_60dp">60dp</dimen>
+    <dimen name="common_30dp">30dp</dimen>
+    <dimen name="common_25dp">25dp</dimen>
+    <dimen name="common_20dp">20dp</dimen>
+    <dimen name="common_10dp">10dp</dimen>
+    <dimen name="common_16dp">16dp</dimen>
+    <dimen name="common_14dp">14dp</dimen>
+    <dimen name="common_12dp">12dp</dimen>
+    <dimen name="common_5dp">5dp</dimen>
+    <dimen name="common_0dp">0dp</dimen>
+    
+    <dimen name="menu_icon_width">35dp</dimen>
+    <dimen name="menu_icon_height">35dp</dimen>
+    
+    <dimen name="smaill_icon_width">80dp</dimen>
+    <dimen name="smaill_icon_height">60dp</dimen>
+    
+    <dimen name="picture_popwindow_width">200dp</dimen>
+    
+    <dimen name="item_message_height">88dp</dimen>
+
+</resources>

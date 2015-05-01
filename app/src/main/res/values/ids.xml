@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="lv" type="id">true</item>
+    <item name="user_icon" type="id">true</item>
+    <item name="user_info" type="id">true</item>
+    <item name="user_name" type="id">true</item>
+    <item name="user_id" type="id">true</item>
+</resources>

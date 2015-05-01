@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/device_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="name"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/device_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="address"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/device_beacon_uuid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="uuid"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/device_major_minor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="major_minor"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/device_txPower_rssi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="txPower_rssi"
+        android:textSize="30dp" />
+</LinearLayout>
