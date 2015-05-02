@@ -80,6 +80,7 @@
     <dimen name="common_110dp">110dp</dimen>
     <dimen name="common_100dp">100dp</dimen>
     <dimen name="common_90dp">90dp</dimen>
+    <dimen name="common_80dp">80dp</dimen>
     <dimen name="common_60dp">60dp</dimen>
     <dimen name="common_30dp">30dp</dimen>
     <dimen name="common_25dp">25dp</dimen>

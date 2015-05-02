@@ -5,4 +5,5 @@
     <item name="user_info" type="id">true</item>
     <item name="user_name" type="id">true</item>
     <item name="user_id" type="id">true</item>
+    <item name="list" type="id">true</item>
 </resources>

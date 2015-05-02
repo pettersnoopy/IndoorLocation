@@ -12,10 +12,10 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/common_110dp">
 
-        <ImageView
+        <ImageCache.CacheableImageView
             android:id="@id/user_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="@dimen/common_80dp"
+            android:layout_height="@dimen/common_80dp"
             android:src="@drawable/usericon"
             />
 
