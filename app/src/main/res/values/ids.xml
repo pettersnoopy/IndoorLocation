@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="content" type="id"></item>
+
     <item name="lv" type="id">true</item>
     <item name="user_icon" type="id">true</item>
     <item name="user_info" type="id">true</item>
     <item name="user_name" type="id">true</item>
     <item name="user_id" type="id">true</item>
     <item name="list" type="id">true</item>
+
+    <item name="screen" type="id">true</item>
+    <item name="loginPanel" type="id">true</item>
+    <item name="loginTitle" type="id">true</item>
+    <item name="register" type="id">true</item>
+    <item name="accountEt" type="id">true</item>
+    <item name="pwdEt" type="id">true</item>
+    <item name="subBtn" type="id">true</item>
+    <item name="regBtn" type="id">true</item>
+    <item name="error" type="id">true</item>
+
+    <item name="registername" type="id">true</item>
+    <item name="regname" type="id">true</item>
+    <item name="registerpassword" type="id">true</item>
+    <item name="regpassword" type="id">true</item>
+    <item name="submit" type="id">true</item>
 </resources>
