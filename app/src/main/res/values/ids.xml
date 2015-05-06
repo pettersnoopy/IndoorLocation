@@ -24,4 +24,8 @@
     <item name="registerpassword" type="id">true</item>
     <item name="regpassword" type="id">true</item>
     <item name="submit" type="id">true</item>
+
+    <item name="flipper" type="id">true</item>
+    <item name="loginflipper" type="id">true</item>
+    <item name="registerflipper" type="id">true</item>
 </resources>

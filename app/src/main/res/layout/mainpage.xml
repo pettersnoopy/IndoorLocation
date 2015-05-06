@@ -4,10 +4,160 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@id/content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <ViewFlipper
+            android:id="@id/flipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--<include-->
+                <!--android:id="@id/loginflipper"-->
+                <!--layout="@layout/login" />-->
+
+            <!--<include-->
+                <!--android:id="@id/registerflipper"-->
+                <!--layout="@layout/register" />-->
+
+            <RelativeLayout
+                android:id="@id/loginflipper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@id/loginTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Welcome To Inside System"
+                    android:layout_marginTop="15dp"
+                    android:textSize="25dp"/>
+
+                <TextView
+                    android:id="@id/error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Please login first" />
+
+                <EditText
+                    android:id="@id/accountEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="15dp"
+                    android:singleLine="true"
+                    android:background="@drawable/qq_edit_login"
+                    android:hint="请输入您的用户名"
+                    android:ems="10" >
+
+                    <requestFocus />
+                </EditText>
+
+                <EditText
+                    android:id="@id/pwdEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="15dp"
+                    android:singleLine="true"
+                    android:password="true"
+                    android:background="@drawable/qq_edit_login"
+                    android:hint="请输入您的密码"
+                    android:ems="10" />
+
+                <Button
+                    android:id="@id/subBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="18dp"
+                    android:text="登陆"
+                    android:background="@drawable/background_button_div"/>
+
+                <Button
+                    android:id="@id/regBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="18dp"
+                    android:text="注册"
+                    android:background="@drawable/background_button_div"/>
+
+                </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@id/registerflipper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@id/registername"
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Please type your name"
+                    android:layout_marginTop="15dp"
+                    android:textSize="15dp"/>
+
+                <EditText
+                    android:id="@id/regname"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="15dp"
+                    android:singleLine="true"
+                    android:background="@drawable/qq_edit_login"
+                    android:hint="请输入您的用户名"
+                    android:ems="10" >
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    android:id="@id/registerpassword"
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15dp"
+                    android:text="Please type your password" />
+
+
+
+                <EditText
+                    android:id="@id/regpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="15dp"
+                    android:singleLine="true"
+                    android:password="true"
+                    android:background="@drawable/qq_edit_login"
+                    android:hint="请输入您的密码"
+                    android:ems="10" />
+
+                <Button
+                    android:id="@id/submit"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="18dp"
+                    android:text="提交"
+                    android:background="@drawable/background_button_div"/>
+            </RelativeLayout>
+
+
+        </ViewFlipper>
+
+    </LinearLayout>
 
 </LinearLayout>
