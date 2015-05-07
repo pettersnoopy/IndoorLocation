@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -153,6 +155,20 @@ public class DataHelper {
             return imagedata;
         }
         return null;
+    }
+
+    public synchronized Drawable byteToDrawable(byte[] img) {
+        Bitmap bitmap;
+        if (img != null) {
+
+
+            bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
+            Drawable drawable = new BitmapDrawable(bitmap);
+
+            return drawable;
+        }
+        return null;
+
     }
 
     // 添加users表的记录
