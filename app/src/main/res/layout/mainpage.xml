@@ -22,17 +22,18 @@
                 <!--android:id="@id/registerflipper"-->
                 <!--layout="@layout/register" />-->
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@id/loginflipper"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <TextView
                     android:id="@id/loginTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Welcome To Inside System"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="80dp"
                     android:textSize="25dp"/>
 
                 <TextView
@@ -89,12 +90,13 @@
                     android:text="注册"
                     android:background="@drawable/background_button_div"/>
 
-                </RelativeLayout>
+                </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@id/registerflipper"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <TextView
                     android:id="@id/registername"
                     android:layout_marginLeft="50dp"
@@ -102,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:text="Please type your name"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="100dp"
                     android:textSize="15dp"/>
 
                 <EditText
@@ -153,7 +155,16 @@
                     android:layout_marginTop="18dp"
                     android:text="提交"
                     android:background="@drawable/background_button_div"/>
-            </RelativeLayout>
+
+                <Button
+                    android:id="@id/loginback"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="18dp"
+                    android:text="返回"
+                    android:background="@drawable/background_button_div"/>
+            </LinearLayout>
 
 
         </ViewFlipper>

@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -13,8 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import common.UserInfo;
+import database.DataHelper;
 import fragment.LoginFragment;
 import holder.BaseViewHolder;
 
@@ -22,6 +29,9 @@ import holder.BaseViewHolder;
  * Created by mac on 15/5/4.
  */
 public class SplashActivity extends Activity {
+    private final String TAG = "SplashActivity";
+
+    public static DataHelper dbHelper;
 
     private static enum MainPage {login, register};
 
@@ -33,46 +43,14 @@ public class SplashActivity extends Activity {
 
     private Button login;
 
+    private Button loginback;
+
     private EditText userNameText;
     private EditText passwordText;
     private TextView errorMsg;
 
-    class LoginHolder extends BaseViewHolder {
-
-        public LoginHolder(Context context) {
-            super(context);
-        }
-
-        private LinearLayout loginPanel;
-        private TextView loginTitle;
-        private TextView error;
-        private EditText account;
-        private EditText pwd;
-        private Button subBtn;
-        private Button regBtn;
-        private Button submit;
-
-        @Override
-        public void initUi(View view) {
-            loginPanel = (LinearLayout) view.findViewById(R.id.loginPanel);
-            loginTitle = (TextView) view.findViewById(R.id.loginTitle);
-            error = (TextView) view.findViewById(R.id.error);
-            account = (EditText) view.findViewById(R.id.accountEt);
-            pwd = (EditText) view.findViewById(R.id.pwdEt);
-            subBtn = (Button) view.findViewById(R.id.subBtn);
-            regBtn = (Button) view.findViewById(R.id.regBtn);
-            register.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    gotoPage(MainPage.register);
-                }
-            });
-        }
-
-        @Override
-        public void setupView(Bundle bundle) {};
-
-    }
+    private EditText regname;
+    private EditText regpassword;
 
     @Override
     protected void onCreate(Bundle bundle) {
@@ -84,6 +62,7 @@ public class SplashActivity extends Activity {
     }
 
     public void initUi() {
+        dbHelper = new DataHelper(this);
         View view = LayoutInflater.from(this).inflate(R.layout.mainpage, null);
         setContentView(view);
         userNameText = (EditText) findViewById(R.id.accountEt);
@@ -93,6 +72,10 @@ public class SplashActivity extends Activity {
         register = (Button) view.findViewById(R.id.regBtn);
         login = (Button) view.findViewById(R.id.subBtn);
         submit = (Button) view.findViewById(R.id.submit);
+        loginback = (Button) view.findViewById(R.id.loginback);
+        regname = (EditText) view.findViewById(R.id.regname);
+        regpassword = (EditText) view.findViewById(R.id.regpassword);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,8 +94,15 @@ public class SplashActivity extends Activity {
             @Override
             public void onClick(View view) {
                 // 添加新用户到数据库
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
+                String username = regname.getText().toString().trim();
+                String password = regpassword.getText().toString().trim();
+                new InsertDatabaseSyncTask().execute(username, password);
+            }
+        });
+        loginback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoPage(MainPage.login);
             }
         });
 
@@ -121,15 +111,58 @@ public class SplashActivity extends Activity {
     public void gotoPage(MainPage page) {
         switch (page) {
             case login:
-                mFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_in));
                 mFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_out));
+                mFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_in));
+
                 mFlipper.setDisplayedChild(page.ordinal());
+//                mFlipper.showPrevious();
                 break;
             case register:
-                mFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_in));
+
                 mFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_out));
+                mFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_in));
                 mFlipper.setDisplayedChild(page.ordinal());
+//                mFlipper.showNext();
                 break;
+
+        }
+    }
+
+    public class InsertDatabaseSyncTask extends AsyncTask {
+        public InsertDatabaseSyncTask() {
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            if (objects == null) {
+                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+                return null;
+            } else {
+                String username = objects[0].toString();
+                String password = objects[1].toString();
+                UserInfo user = new UserInfo();
+                user.setId("1");
+                user.setToken("firstOne");
+                user.setTokenSecret("firstOneSceret");
+                user.setUserIcon(null);
+                user.setUserId("1");
+                user.setUserName(username);
+                user.setPassword(password);
+                dbHelper.SaveUserInfo(user);
+            }
+            return null;
         }
     }
 
@@ -147,13 +180,19 @@ public class SplashActivity extends Activity {
 
         @Override
         protected Boolean doInBackground(Object[] objects) {
-//            dh = InsideLocationApplication.dbHelper;
-//            if (dh.HaveUserName(objects[0].toString())) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-            return true;
+            if (objects == null) {
+                Toast.makeText(getApplicationContext(), "请输入账号密码", Toast.LENGTH_SHORT).show();
+                return false;
+            } else {
+                Log.d("TAG", "已输入");
+                boolean flag = dbHelper.HaveUserName(objects[0].toString(), objects[1].toString());
+                Log.d("FLAG", flag + "");
+                if (flag) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
 
         @Override

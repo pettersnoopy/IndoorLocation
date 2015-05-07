@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -74,13 +76,16 @@ public class DataHelper {
     }
 
     //
-    public Boolean HaveUserName(String UserName) {
+    public Boolean HaveUserName(String UserName, String Password) {
         Boolean b = false;
+        Log.d("UserName", UserName);
+        Log.d("Password", Password);
         Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.USERNAME
-                + "=?", new String[]{UserName}, null, null, null );
+                + "=? and " + UserInfo.PASSWORD + "=?", new String[]{UserName, Password}, null, null, null );
         b = cursor.moveToFirst();
         Log. e("HaveUserName", b.toString());
         cursor.close();
+
         return b;
     }
 
@@ -117,9 +122,37 @@ public class DataHelper {
         values.put(UserInfo. USERID, user.getUserId());
         values.put(UserInfo. TOKEN, user.getToken());
         values.put(UserInfo. TOKENSECRET, user.getTokenSecret());
-        Long uid = db.insert(SqliteHelper. TB_NAME, UserInfo.ID, values);
-        Log. e("SaveUserInfo", uid + "");
+        values.put(UserInfo. USERNAME, user.getUserName());
+        values.put(UserInfo. PASSWORD, user.getPassword());
+        values.put(UserInfo. USERICON, drawableToByte(user.getUserIcon()));
+        Long uid = db.insert(SqliteHelper.TB_NAME, UserInfo.ID, values);
+        Log. e("SaveUserInfo", uid + "" + " " + user.getUserName() + " " + user.getPassword());
+
         return uid;
+    }
+    public  synchronized  byte[] drawableToByte(Drawable drawable) {
+
+        if (drawable != null) {
+            Bitmap bitmap = Bitmap
+                    .createBitmap(
+                            drawable.getIntrinsicWidth(),
+                            drawable.getIntrinsicHeight(),
+                            drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                                    : Bitmap.Config.RGB_565);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+                    drawable.getIntrinsicHeight());
+            drawable.draw(canvas);
+            int size = bitmap.getWidth() * bitmap.getHeight() * 4;
+            // 创建一个字节数组输出流,流的大小为size
+            ByteArrayOutputStream baos = new ByteArrayOutputStream(size);
+            // 设置位图的压缩格式，质量为100%，并放入字节数组输出流中
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            // 将字节数组输出流转化为字节数组byte[]
+            byte[] imagedata = baos.toByteArray();
+            return imagedata;
+        }
+        return null;
     }
 
     // 添加users表的记录

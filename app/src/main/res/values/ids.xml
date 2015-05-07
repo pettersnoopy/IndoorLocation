@@ -28,4 +28,5 @@
     <item name="flipper" type="id">true</item>
     <item name="loginflipper" type="id">true</item>
     <item name="registerflipper" type="id">true</item>
+    <item name="loginback" type="id">true</item>
 </resources>

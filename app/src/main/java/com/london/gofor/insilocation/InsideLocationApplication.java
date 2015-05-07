@@ -20,7 +20,7 @@ public class InsideLocationApplication extends Application {
 
     private BitmapLruCache mCache;
 
-    public static DataHelper dbHelper;
+//    public static DataHelper dbHelper;
 
     @Override
     public void onCreate() {
@@ -28,8 +28,8 @@ public class InsideLocationApplication extends Application {
 
         File cacheLocation;
 
-        dbHelper = new DataHelper(this);
-        Log.d("database", "Database created!");
+//        dbHelper = new DataHelper(this);
+//        Log.d("database", "Database created!");
 
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             cacheLocation = new File(Environment.getExternalStorageDirectory() + "/Inside-BitmapCache");

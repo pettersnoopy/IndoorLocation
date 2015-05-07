@@ -81,8 +81,8 @@ public class LoginFragment extends Fragment {
 
         @Override
         protected Boolean doInBackground(Object[] objects) {
-            dh = InsideLocationApplication.dbHelper;
-            if (dh.HaveUserName(objects[0].toString())) {
+//            dh = InsideLocationApplication.dbHelper;
+            if (dh.HaveUserName(objects[0].toString(), objects[1].toString())) {
                 return true;
             } else {
                 return false;

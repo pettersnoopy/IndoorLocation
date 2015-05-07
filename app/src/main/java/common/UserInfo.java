@@ -15,12 +15,23 @@ public class UserInfo implements Serializable {
     public static final String TOKENSECRET = "tokenSecret";
     public static final String USERNAME = "userName";
     public static final String USERICON = "userIcon";
+    public static final String PASSWORD = "password";
 
     private String id;
     private String userId;
     private String token;
     private String tokenSecret;
     private String UserName;
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    private String Password;
     private Drawable userIcon;
 
     public void setId(String id) {

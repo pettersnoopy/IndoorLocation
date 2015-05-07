@@ -12,7 +12,7 @@ import common.UserInfo;
  */
 public class SqliteHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
-    public static final String TB_NAME = "users";
+    public static final String TB_NAME = "user";
 
     public SqliteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -36,6 +36,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
                         UserInfo. TOKEN+ " varchar,"+
                         UserInfo. TOKENSECRET+ " varchar,"+
                         UserInfo. USERNAME+ " varchar,"+
+                        UserInfo. PASSWORD + " varchar," +
                         UserInfo. USERICON+ " blob"+
                         ")"
         );
