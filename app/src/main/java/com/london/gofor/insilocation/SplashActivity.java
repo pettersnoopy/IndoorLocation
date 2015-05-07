@@ -31,6 +31,12 @@ import holder.BaseViewHolder;
 public class SplashActivity extends Activity {
     private final String TAG = "SplashActivity";
 
+    private static String Uname;
+
+    public static String getUname() {
+        return Uname;
+    }
+
     public static DataHelper dbHelper;
 
     private static enum MainPage {login, register};
@@ -81,7 +87,7 @@ public class SplashActivity extends Activity {
             public void onClick(View view) {
                 String username = userNameText.getText().toString().trim();
                 String password = passwordText.getText().toString().trim();
-                new LoginSyncTask(errorMsg, register).execute(username, password);
+                new LoginSyncTask(userNameText, errorMsg, register).execute(username, password);
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +102,7 @@ public class SplashActivity extends Activity {
                 // 添加新用户到数据库
                 String username = regname.getText().toString().trim();
                 String password = regpassword.getText().toString().trim();
-                new InsertDatabaseSyncTask().execute(username, password);
+                new InsertDatabaseAsyncTask().execute(username, password);
             }
         });
         loginback.setOnClickListener(new View.OnClickListener() {
@@ -128,8 +134,8 @@ public class SplashActivity extends Activity {
         }
     }
 
-    public class InsertDatabaseSyncTask extends AsyncTask {
-        public InsertDatabaseSyncTask() {
+    public class InsertDatabaseAsyncTask extends AsyncTask {
+        public InsertDatabaseAsyncTask() {
         }
 
         @Override
@@ -153,14 +159,12 @@ public class SplashActivity extends Activity {
                 String username = objects[0].toString();
                 String password = objects[1].toString();
                 UserInfo user = new UserInfo();
-                user.setId("1");
-                user.setToken("firstOne");
-                user.setTokenSecret("firstOneSceret");
-                user.setUserIcon(null);
-                user.setUserId("1");
+                user.setUserId("12");
                 user.setUserName(username);
-                user.setPassword(password);
+                user.setPassWord(password);
+                user.setUserIcon(null);
                 dbHelper.SaveUserInfo(user);
+                Uname = username;
             }
             return null;
         }
@@ -168,10 +172,12 @@ public class SplashActivity extends Activity {
 
     public class LoginSyncTask extends AsyncTask {
 
+        private EditText username;
         private TextView textView;
         private Button register;
 
-        public LoginSyncTask(TextView textView, Button register) {
+        public LoginSyncTask(EditText username, TextView textView, Button register) {
+            this.username = username;
             this.textView = textView;
             this.register = register;
         }
@@ -185,6 +191,7 @@ public class SplashActivity extends Activity {
                 return false;
             } else {
                 Log.d("TAG", "已输入");
+                Uname = username.getText().toString();
                 boolean flag = dbHelper.HaveUserName(objects[0].toString(), objects[1].toString());
                 Log.d("FLAG", flag + "");
                 if (flag) {
@@ -209,6 +216,7 @@ public class SplashActivity extends Activity {
             if (o instanceof Boolean) {
                 boolean flag = (Boolean) o;
                 if (flag) {
+
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {

@@ -5,10 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -18,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.UserInfo;
+import common.ActionManager;
 
 /**
  * Created by mac on 15/5/4.
@@ -41,18 +38,32 @@ public class DataHelper {
         dbHelper.close();
     }
 
+    public UserInfo GetUserInfo(String name) {
+        Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.USERNAME
+        + "=?", new String[] {name}, null, null, null);
+        if (cursor.moveToFirst()) {
+            String username = cursor.getString(cursor.getColumnIndex(UserInfo.USERNAME));
+            String password = cursor.getString(cursor.getColumnIndex(UserInfo.PASSWORD));
+            byte[] icon = cursor.getBlob(cursor.getColumnIndex(UserInfo.USERICON));
+            Drawable usericon = ActionManager.byteToDrawable(icon);
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserName(username);
+            userInfo.setPassWord(password);
+            userInfo.setUserIcon(usericon);
+            return userInfo;
+        } else {
+            return null;
+        }
+    }
+
     // 获取users表中的UserID、Access Token、Access Secret的记录
     public List<UserInfo> GetUserList(Boolean isSimple) {
         List<UserInfo> userList = new ArrayList<UserInfo>();
         Cursor cursor = db.query(SqliteHelper. TB_NAME, null, null , null, null,
-                null, UserInfo. ID + " DESC");
+                null, UserInfo. USERNAME + " DESC");
         cursor.moveToFirst();
         while (!cursor.isAfterLast() && (cursor.getString(1) != null )) {
             UserInfo user = new UserInfo();
-            user.setId(cursor.getString(0));
-            user.setUserId(cursor.getString(1));
-            user.setToken(cursor.getString(2));
-            user.setTokenSecret(cursor.getString(3));
             if (!isSimple) {
                 user.setUserName(cursor.getString(4));
                 ByteArrayInputStream stream = new ByteArrayInputStream(cursor.getBlob(5));
@@ -80,8 +91,6 @@ public class DataHelper {
     //
     public Boolean HaveUserName(String UserName, String Password) {
         Boolean b = false;
-        Log.d("UserName", UserName);
-        Log.d("Password", Password);
         Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.USERNAME
                 + "=? and " + UserInfo.PASSWORD + "=?", new String[]{UserName, Password}, null, null, null );
         b = cursor.moveToFirst();
@@ -112,9 +121,10 @@ public class DataHelper {
         values.put(UserInfo. USERID, user.getUserId());
         values.put(UserInfo. TOKEN, user.getToken());
         values.put(UserInfo. TOKENSECRET, user.getTokenSecret());
-        int id = db.update(SqliteHelper. TB_NAME, values, UserInfo.USERID + "="
-                + user.getUserId(), null);
-        Log. e("UpdateUserInfo", id + "");
+        values.put(UserInfo.USERICON, ActionManager.drawableToByte(user.getUserIcon()));
+        int id = db.update(SqliteHelper. TB_NAME, values, UserInfo.USERNAME + "=?"
+                , new String[] {user.getUserName()});
+        Log. e("UpdateUserInfo", id + "success");
         return id;
     }
 
@@ -122,67 +132,12 @@ public class DataHelper {
     public Long SaveUserInfo(UserInfo user) {
         ContentValues values = new ContentValues();
         values.put(UserInfo. USERID, user.getUserId());
-        values.put(UserInfo. TOKEN, user.getToken());
-        values.put(UserInfo. TOKENSECRET, user.getTokenSecret());
         values.put(UserInfo. USERNAME, user.getUserName());
-        values.put(UserInfo. PASSWORD, user.getPassword());
-        values.put(UserInfo. USERICON, drawableToByte(user.getUserIcon()));
-        Long uid = db.insert(SqliteHelper.TB_NAME, UserInfo.ID, values);
-        Log. e("SaveUserInfo", uid + "" + " " + user.getUserName() + " " + user.getPassword());
+        values.put(UserInfo. PASSWORD, user.getPassWord());
+        values.put(UserInfo. USERICON, ActionManager.drawableToByte(user.getUserIcon()));
+        Long uid = db.insert(SqliteHelper.TB_NAME, UserInfo.USERID, values);
+        Log. e("SaveUserInfo", uid + "" + " " + user.getUserName() + " " + user.getPassWord());
 
-        return uid;
-    }
-    public  synchronized  byte[] drawableToByte(Drawable drawable) {
-
-        if (drawable != null) {
-            Bitmap bitmap = Bitmap
-                    .createBitmap(
-                            drawable.getIntrinsicWidth(),
-                            drawable.getIntrinsicHeight(),
-                            drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                                    : Bitmap.Config.RGB_565);
-            Canvas canvas = new Canvas(bitmap);
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
-                    drawable.getIntrinsicHeight());
-            drawable.draw(canvas);
-            int size = bitmap.getWidth() * bitmap.getHeight() * 4;
-            // 创建一个字节数组输出流,流的大小为size
-            ByteArrayOutputStream baos = new ByteArrayOutputStream(size);
-            // 设置位图的压缩格式，质量为100%，并放入字节数组输出流中
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            // 将字节数组输出流转化为字节数组byte[]
-            byte[] imagedata = baos.toByteArray();
-            return imagedata;
-        }
-        return null;
-    }
-
-    public synchronized Drawable byteToDrawable(byte[] img) {
-        Bitmap bitmap;
-        if (img != null) {
-
-
-            bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
-            Drawable drawable = new BitmapDrawable(bitmap);
-
-            return drawable;
-        }
-        return null;
-
-    }
-
-    // 添加users表的记录
-    public Long SaveUserInfo(UserInfo user, byte[] icon) {
-        ContentValues values = new ContentValues();
-        values.put(UserInfo. USERID, user.getUserId());
-        values.put(UserInfo. USERNAME, user.getUserName());
-        values.put(UserInfo. TOKEN, user.getToken());
-        values.put(UserInfo. TOKENSECRET, user.getTokenSecret());
-        if(icon!= null){
-            values.put(UserInfo. USERICON, icon);
-        }
-        Long uid = db.insert(SqliteHelper. TB_NAME, UserInfo.ID, values);
-        Log. e("SaveUserInfo", uid + "");
         return uid;
     }
 

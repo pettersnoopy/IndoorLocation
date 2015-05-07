@@ -14,61 +14,70 @@ public class UserInfo implements Serializable {
     public static final String TOKEN = "token";
     public static final String TOKENSECRET = "tokenSecret";
     public static final String USERNAME = "userName";
+    public static final String PASSWORD = "passWord";
     public static final String USERICON = "userIcon";
-    public static final String PASSWORD = "password";
 
     private String id;
-    private String userId;
+    private String userId; // 用户id
     private String token;
     private String tokenSecret;
-    private String UserName;
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
-    }
-
-    private String Password;
+    private String userName;
+    private String passWord;
     private Drawable userIcon;
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public String getId() {
-        return this.id;
+    public String getUserId() {
+        return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public String getUserId() {
-        return this.userId;
+    public String getToken() {
+        return token;
     }
 
     public void setToken(String token) {
         this.token = token;
     }
 
-    public String getToken() {
-        return this.token;
+    public String getTokenSecret() {
+        return tokenSecret;
     }
 
-    public void setTokenSecret(String tokenSecret) { this.tokenSecret = tokenSecret; }
+    public void setTokenSecret(String tokenSecret) {
+        this.tokenSecret = tokenSecret;
+    }
 
-    public String getTokenSecret() { return this.tokenSecret; }
+    public String getUserName() {
+        return userName;
+    }
 
-    public void setUserName(String userName) { this.UserName = userName; }
-
-    public String getUserName() { return this.UserName; }
-
-    public void setUserIcon(Drawable drawable) { this.userIcon = drawable; }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public Drawable getUserIcon() {
-        return this.userIcon;
+        return userIcon;
+    }
+
+    public void setUserIcon(Drawable userIcon) {
+        this.userIcon = userIcon;
     }
 }

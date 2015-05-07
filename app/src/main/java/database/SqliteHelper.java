@@ -40,9 +40,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
                         UserInfo. USERICON+ " blob"+
                         ")"
         );
-        Log. e("Database", "onCreate");
+        Log. e("Database" ,"onCreate" );
     }
-
     // update table
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
