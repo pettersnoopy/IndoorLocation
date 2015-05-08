@@ -1,8 +1,7 @@
 package com.london.gofor.insilocation;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -10,6 +9,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,11 +22,12 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.AdapterView;
 import android.provider.MediaStore;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.io.File;
 
@@ -32,26 +35,33 @@ import ImageCache.CacheableImageView;
 import common.ActionManager;
 import common.UserInfo;
 import database.DataHelper;
-import utils.Utils;
+import fragment.UserInfoSettingFragment;
+import holder.BaseViewHolder;
 
 /**
  * Created by Administrator on 2015/4/29.
  */
-public class UserInfoActivity extends Activity {
+public class UserInfoActivity extends FragmentActivity {
 
     public static DataHelper dbHelper;
-
+    private ViewFlipper mFlipper;
+    private RelativeLayout goInfoSetting;
     private CacheableImageView mCacheableImageView;
-
     private TextView username;
-
     private TextView userId;
-
     private PopupWindow popWindow;
 
-    private String Uname = null;
-
     private String Uid = null;
+    private UserInfoHolder mUserInfoHolder;
+    private UserInfoSettingFragment mUserInfoSetting;
+    private LinearLayout infopre;
+
+    private String Uname = null;
+    private String UserId = null;
+    private Drawable drawable = null;
+    private String personaltoken = null;
+    private Bundle toFragmentBundle = new Bundle();
+
 
     private static final int Request_photo_select = 1;
 
@@ -64,21 +74,44 @@ public class UserInfoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.userinfo);
+        setContentView(R.layout.user);
         dbHelper = SplashActivity.dbHelper;
+        infopre = (LinearLayout) findViewById(R.id.infopre);
+        infopre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFlipper.showPrevious();
+            }
+        });
+        mFlipper = (ViewFlipper) findViewById(R.id.userflipper);
         username = (TextView) findViewById(R.id.user_name);
+        goInfoSetting = (RelativeLayout) findViewById(R.id.gotosetting);
+        goInfoSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFlipper.showNext();
+            }
+        });
         username.setText(SplashActivity.getUname());
         userId = (TextView) findViewById(R.id.user_id);
+        userId.setText(SplashActivity.getUserId());
         Uname = username.getText().toString();
+        UserId = userId.getText().toString();
         Uid = userId.getText().toString();
+        toFragmentBundle.putString("name", SplashActivity.getUname());
+        toFragmentBundle.putString("userId", SplashActivity.getUserId());
         mCacheableImageView = (CacheableImageView) findViewById(R.id.user_icon);
+        if (mUserInfoSetting == null) {
+            mUserInfoSetting = new UserInfoSettingFragment();
+            mUserInfoSetting.setArguments(toFragmentBundle);
+        }
         new SelectUserInfoSyncTask().execute(Uname);
         mCacheableImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("Click", "HasClicked!!");
-                String[] string1 = new String[] {getString(R.string.select_from_photo), getString(R.string.take_photo)};
-                String[] string2 = new String[] {"Select from photo", "Take photo"};
+                String[] string1 = new String[]{getString(R.string.select_from_photo), getString(R.string.take_photo)};
+                String[] string2 = new String[]{"Select from photo", "Take photo"};
                 popWindow = initPopWindow(string1, new OnItemClickListener() {
 
                     @Override
@@ -105,6 +138,16 @@ public class UserInfoActivity extends Activity {
 
             }
         });
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.usersettingframelayout, mUserInfoSetting).commit();
+
+    }
+
+    public void initUI() {
+        View view = LayoutInflater.from(this).inflate(R.layout.user, null);
+        setContentView(view);
+        mUserInfoHolder = new UserInfoHolder(this);
+        mUserInfoHolder.initUi(view);
     }
 
     @Override
@@ -277,6 +320,70 @@ public class UserInfoActivity extends Activity {
         if(popWindow != null){
             popWindow.dismiss();
             popWindow = null;
+        }
+    }
+
+    class UserInfoHolder extends BaseViewHolder {
+        public UserInfoHolder(Context context) {
+            super(context);
+        }
+        private CacheableImageView mCacheableImageView;
+
+        private TextView username;
+
+        private TextView userId;
+
+        private PopupWindow popWindow;
+
+        @Override
+        public void initUi(View view) {
+            username = (TextView) findViewById(R.id.user_name);
+            username.setText(SplashActivity.getUname());
+            userId = (TextView) findViewById(R.id.user_id);
+            userId.setText(SplashActivity.getUserId());
+            mCacheableImageView = (CacheableImageView) view.findViewById(R.id.user_icon);
+            new SelectUserInfoSyncTask().execute(Uname);
+            mCacheableImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Click", "HasClicked!!");
+                    String[] string1 = new String[] {getString(R.string.select_from_photo), getString(R.string.take_photo)};
+                    String[] string2 = new String[] {"Select from photo", "Take photo"};
+                    popWindow = initPopWindow(string1, new OnItemClickListener() {
+
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if (position == 0) {
+                                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                            intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.EXTERNAL_CONTENT_URI);
+                                Log.d("TAG", username.getText().toString());
+                                Log.d("TAG", userId.getText().toString());
+                                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, Request_photo_select);
+                            } else {
+                                if (isSdcardExisting()) {
+                                    Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+                                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, getImageUri());
+                                    cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
+                                    startActivityForResult(cameraIntent, Request_Camera_Upload);
+                                }
+                            }
+                        }
+                    });
+                    popWindow.showAsDropDown(mCacheableImageView);
+
+                }
+            });
+
+
+        }
+
+        @Override
+        public void setupView(Bundle bundle) {};
+
+        public void updateValue() {
+
         }
     }
 }

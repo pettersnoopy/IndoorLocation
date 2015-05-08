@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--用户注册登录界面ids-->
     <item name="content" type="id"></item>
 
     <item name="lv" type="id">true</item>
@@ -23,10 +25,32 @@
     <item name="regname" type="id">true</item>
     <item name="registerpassword" type="id">true</item>
     <item name="regpassword" type="id">true</item>
+    <item name="securityCode" type="id">true</item>
+    <item name="getSecuritycode" type="id">true</item>
     <item name="submit" type="id">true</item>
 
     <item name="flipper" type="id">true</item>
     <item name="loginflipper" type="id">true</item>
     <item name="registerflipper" type="id">true</item>
     <item name="loginback" type="id">true</item>
+
+    <!--用户界面ids-->
+    <item name="gotosetting" type="id">true</item>
+    <item name="userinfolayout" type="id">true</item>
+    <item name="userflipper" type="id">true</item>
+    <item name="userinfosetting" type="id">true</item>
+    <item name="infopre" type="id">true</item>
+    <item name="headicon" type="id">true</item>
+    <item name="name" type="id">true</item>
+    <item name="QRcode" type="id">true</item>
+    <item name="phonenumber" type="id">true</item>
+    <item name="address" type="id">true</item>
+    <item name="district" type="id">true</item>
+    <item name="personaltoken" type="id">true</item>
+    <item name="gender" type="id">true</item>
+    <item name="usersettingframelayout" type="id">true</item>
+    <item name="headimage" type="id">true</item>
+    <item name="phonetextview" type="id">true</item>
+    <item name="nametextview" type="id">true</item>
+    <item name="personaltokenview" type="id">true</item>
 </resources>

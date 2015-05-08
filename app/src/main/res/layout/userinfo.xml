@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent">
     <RelativeLayout
-        android:background="@drawable/userbackground"
+        android:id="@id/gotosetting"
+        android:layout_marginTop="@dimen/common_20dp"
+        android:background="@color/snow"
         android:paddingTop="@dimen/common_20dp"
         android:paddingLeft="@dimen/common_10dp"
         android:paddingBottom="@dimen/common_20dp"
@@ -15,8 +16,7 @@
         <ImageCache.CacheableImageView
             android:id="@id/user_icon"
             android:layout_width="@dimen/common_80dp"
-            android:layout_height="@dimen/common_80dp"
-            />
+            android:layout_height="@dimen/common_80dp" />
 
         <LinearLayout
             android:paddingLeft="@dimen/common_20dp"
@@ -32,18 +32,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/darkslategrey"
-                android:text="Admin">
+                android:textSize="16sp"
+                android:text="请设置用户名">
             </TextView>
 
             <LinearLayout
-                android:paddingTop="2dp"
+                android:paddingTop="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ID:" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tel:" />
 
                 <TextView
                     android:id="@id/user_id"
@@ -55,12 +56,14 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="@dimen/common_20dp"
+            android:layout_height="@dimen/common_20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/common_10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/three"/>
+
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </LinearLayout>
 
 </LinearLayout>

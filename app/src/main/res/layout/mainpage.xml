@@ -53,7 +53,7 @@
                     android:layout_marginTop="15dp"
                     android:singleLine="true"
                     android:background="@drawable/qq_edit_login"
-                    android:hint="请输入您的用户名"
+                    android:hint="请输入您的手机号号码"
                     android:ems="10" >
 
                     <requestFocus />
@@ -116,7 +116,7 @@
                     android:layout_marginTop="15dp"
                     android:singleLine="true"
                     android:background="@drawable/qq_edit_login"
-                    android:hint="请输入您的用户名"
+                    android:hint="请输入您的手机号码"
                     android:ems="10" >
 
                     <requestFocus />
@@ -147,23 +147,63 @@
                     android:hint="请输入您的密码"
                     android:ems="10" />
 
-                <Button
-                    android:id="@id/submit"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="18dp"
-                    android:text="提交"
-                    android:background="@drawable/background_button_div"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="15dp" >
 
-                <Button
-                    android:id="@id/loginback"
-                    android:layout_width="150dp"
+                    <EditText
+                        android:id="@id/securityCode"
+                        android:layout_width="@dimen/common_120dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentLeft="true"
+                        android:singleLine="true"
+                        android:hint="请输入验证码"/>
+
+                    <Button
+                        android:id="@id/getSecuritycode"
+                        android:layout_width="@dimen/common_100dp"
+                        android:layout_height="50dp"
+                        android:layout_toRightOf="@id/securityCode"
+                        android:layout_alignParentRight="true"
+                        android:text="获取验证码"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="18dp"
-                    android:text="返回"
-                    android:background="@drawable/background_button_div"/>
+                    android:layout_marginLeft="@dimen/common_50dp"
+                    android:layout_marginTop="@dimen/common_15dp"
+                    android:layout_marginRight="@dimen/common_50dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@id/submit"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="@dimen/common_10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="提交"
+                        android:background="@drawable/background_button_div"/>
+
+                    <Button
+                        android:id="@id/loginback"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/common_10dp"
+                        android:text="返回"
+                        android:background="@drawable/background_button_div"/>
+
+                </RelativeLayout>
+
+
             </LinearLayout>
 
 

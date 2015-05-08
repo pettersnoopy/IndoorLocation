@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitesmoke"
+    android:orientation="vertical">
+
+    <ViewFlipper
+        android:id="@id/userflipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@id/userinfolayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_50dp"
+                android:background="@color/wl_black">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/snow"
+                    android:text="我"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
+            <include layout="@layout/userinfo" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/userinfosetting"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/whitesmoke"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_50dp"
+                android:background="@color/wl_black">
+
+                <LinearLayout
+                    android:id="@id/infopre"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/common_20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/common_20dp"
+                        android:layout_height="@dimen/common_20dp"
+                        android:layout_marginLeft="@dimen/common_10dp"
+                        android:background="@drawable/three"/>
+
+                    <TextView
+                        android:layout_width="@dimen/common_20dp"
+                        android:layout_height="@dimen/common_20dp"
+                        android:layout_marginLeft="@dimen/common_10dp"
+                        android:layout_centerVertical="true"
+                        android:text="我"
+                        android:textColor="@color/snow"/>
+
+                    </LinearLayout>
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/snow"
+                    android:text="个人信息"
+                    android:textSize="22sp"/>
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@id/usersettingframelayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </ViewFlipper>
+
+</LinearLayout>

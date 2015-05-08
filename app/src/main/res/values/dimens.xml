@@ -77,16 +77,22 @@
     
     <dimen name="share_item_height">45dp</dimen>
 
+    <dimen name="common_400dp">400dp</dimen>
+    <dimen name="common_130dp">130dp</dimen>
+    <dimen name="common_120dp">120dp</dimen>
     <dimen name="common_110dp">110dp</dimen>
     <dimen name="common_100dp">100dp</dimen>
     <dimen name="common_90dp">90dp</dimen>
     <dimen name="common_80dp">80dp</dimen>
     <dimen name="common_60dp">60dp</dimen>
+    <dimen name="common_50dp">50dp</dimen>
+    <dimen name="common_40dp">40dp</dimen>
     <dimen name="common_30dp">30dp</dimen>
     <dimen name="common_25dp">25dp</dimen>
     <dimen name="common_20dp">20dp</dimen>
     <dimen name="common_10dp">10dp</dimen>
     <dimen name="common_16dp">16dp</dimen>
+    <dimen name="common_15dp">15dp</dimen>
     <dimen name="common_14dp">14dp</dimen>
     <dimen name="common_12dp">12dp</dimen>
     <dimen name="common_5dp">5dp</dimen>
