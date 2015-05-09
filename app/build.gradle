@@ -24,4 +24,11 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile files('libs/android-support-v4.jar')
     compile project(':sMSSDK')
+    compile project(':MaterialDesign')
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
 }

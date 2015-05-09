@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gc.materialdesign.widgets.Dialog;
 import com.london.gofor.insilocation.R;
 import com.london.gofor.insilocation.UserInfoActivity;
 
@@ -52,6 +53,13 @@ public class UserInfoSettingFragment extends Fragment {
             personaltoken = (RelativeLayout) view.findViewById(R.id.personaltoken);
             headimage = (ImageView) view.findViewById(R.id.headimage);
             nametextview = (TextView) view.findViewById(R.id.nametextview);
+            nametextview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new Dialog(getActivity(), "Name", "show");
+                    dialog.show();
+                }
+            });
             phonetextview = (TextView) view.findViewById(R.id.phonetextview);
             personaltokenview = (TextView) view.findViewById(R.id.personaltokenview);
             String name = bundle.getString("name");
