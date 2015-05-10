@@ -5,4 +5,26 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- 按钮文字样式 -->
+    <style name="tab_text_color">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">12dp</item>
+        <!-- 从左向右跑马灯效果 -->
+        <item name="android:ellipsize">marquee</item>
+        <!-- 单行显示 -->
+        <item name="android:singleLine">true</item>
+    </style>
+
+
+    <!--<item name="android:background">@drawable/tab_bg</item>-->
+    <!-- 按钮样式 -->
+    <style name="tab_button_bg">
+        <item name="android:textAppearance">@style/tab_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>

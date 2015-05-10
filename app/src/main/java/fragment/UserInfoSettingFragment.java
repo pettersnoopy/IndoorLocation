@@ -53,25 +53,49 @@ public class UserInfoSettingFragment extends Fragment {
             personaltoken = (RelativeLayout) view.findViewById(R.id.personaltoken);
             headimage = (ImageView) view.findViewById(R.id.headimage);
             nametextview = (TextView) view.findViewById(R.id.nametextview);
-            nametextview.setOnClickListener(new View.OnClickListener() {
+
+            phonetextview = (TextView) view.findViewById(R.id.phonetextview);
+            personaltokenview = (TextView) view.findViewById(R.id.personaltokenview);
+            final String name1 = bundle.getString("name");
+            final String phone1 = bundle.getString("userId");
+            final String personal1 = bundle.getString("token");
+            byte[] bytes = bundle.getByteArray("bitmap");
+            Drawable image = ActionManager.byteToDrawable(bytes);
+
+            name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Dialog dialog = new Dialog(getActivity(), "Name", "show");
+                    Dialog dialog = new Dialog(getActivity(), "名字", null, name1);
+                    dialog.addCancelButton("取消");
+                    dialog.show();
+                    String newname = dialog.getEdit();
+                    // Save new name
+                }
+            });
+
+            phonenumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new Dialog(getActivity(), "名字", null, phone1);
+                    dialog.addCancelButton("取消");
                     dialog.show();
                 }
             });
-            phonetextview = (TextView) view.findViewById(R.id.phonetextview);
-            personaltokenview = (TextView) view.findViewById(R.id.personaltokenview);
-            String name = bundle.getString("name");
-            String phone = bundle.getString("userId");
-            String personal = bundle.getString("token");
-            byte[] bytes = bundle.getByteArray("bitmap");
-            Drawable image = ActionManager.byteToDrawable(bytes);
+
+            personaltoken.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new Dialog(getActivity(), "名字", null, personal1);
+                    dialog.addCancelButton("取消");
+                    dialog.show();
+                }
+            });
+
             if (image != null) headimage.setImageDrawable(image);
-            if (name != null) nametextview.setText(name);
-            if (phone != null) phonetextview.setText(phone);
-            if (personal != null) personaltokenview.setText(personal);
-            new SelectUserInfoSyncTask().execute(name);
+            if (name1 != null) nametextview.setText(name1);
+            if (phone1 != null) phonetextview.setText(phone1);
+            if (personal1 != null) personaltokenview.setText(personal1);
+            new SelectUserInfoSyncTask().execute(name1);
         }
 
         public void setupView(Bundle bundle) {};

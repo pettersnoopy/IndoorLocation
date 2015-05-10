@@ -23,6 +23,15 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000" />
 
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:background="@null"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
         <ScrollView
             android:id="@+id/message_scrollView"
             android:layout_width="match_parent"
@@ -30,7 +39,8 @@
             android:layout_below="@id/title"
             android:paddingBottom="50dp"
             android:scrollbarSize="2dp"
-            android:scrollbarThumbVertical="@color/thumbColor" >
+            android:scrollbarThumbVertical="@color/thumbColor"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,6 +58,7 @@
         </ScrollView>
 
         <LinearLayout
+            android:layout_below="@id/edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/message_scrollView"
@@ -67,7 +78,7 @@
                 android:id="@+id/button_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accept"
+                android:text="确认"
                 android:background="#1E88E5" />
         </LinearLayout>
     </RelativeLayout>

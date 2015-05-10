@@ -190,9 +190,6 @@ public class UserInfoActivity extends FragmentActivity {
                 String password = objects[1].toString();
                 Drawable icon = (Drawable) objects[2];
                 UserInfo user = new UserInfo();
-//                user.setId("1");
-//                user.setToken("firstOne");
-//                user.setTokenSecret("firstOneSceret");
                 user.setUserIcon(icon);
 //                user.setUserId("1");
                 user.setUserName(username);

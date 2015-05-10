@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ public class Dialog extends android.app.Dialog{
 	TextView messageTextView;
 	String title;
 	TextView titleTextView;
+    EditText contentEditView;
+    String edit;
 	
 	ButtonFlat buttonAccept;
 	ButtonFlat buttonCancel;
@@ -34,11 +37,12 @@ public class Dialog extends android.app.Dialog{
 	View.OnClickListener onCancelButtonClickListener;
 	
 	
-	public Dialog(Context context,String title, String message) {
+	public Dialog(Context context,String title, String message, String edit) {
 		super(context, android.R.style.Theme_Translucent);
 		this.context = context;// init Context
 		this.message = message;
 		this.title = title;
+        this.edit = edit;
 	}
 	
 	public void addCancelButton(String buttonCancelText){
@@ -75,6 +79,9 @@ public class Dialog extends android.app.Dialog{
 		
 	    this.titleTextView = (TextView) findViewById(R.id.title);
 	    setTitle(title);
+
+        this.contentEditView = (EditText) findViewById(R.id.edit);
+        setEdit(edit);
 	    
 	    this.messageTextView = (TextView) findViewById(R.id.message);
 	    setMessage(message);
@@ -147,6 +154,15 @@ public class Dialog extends android.app.Dialog{
 		}
 	}
 
+    public String getEdit() { return edit;}
+
+    public void setEdit(String edit) {
+        this.edit = edit;
+        contentEditView.setHint(edit);
+        contentEditView.setText(edit);
+        contentEditView.setSelection(edit.length());
+    }
+
 	public TextView getTitleTextView() {
 		return titleTextView;
 	}
@@ -154,6 +170,10 @@ public class Dialog extends android.app.Dialog{
 	public void setTitleTextView(TextView titleTextView) {
 		this.titleTextView = titleTextView;
 	}
+
+    public EditText getContentEditView() { return contentEditView; }
+
+    public void setContentEditView(EditText contentEditView) { this.contentEditView = contentEditView; }
 
 	public ButtonFlat getButtonAccept() {
 		return buttonAccept;

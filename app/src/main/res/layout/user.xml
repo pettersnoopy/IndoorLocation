@@ -59,12 +59,11 @@
                         android:layout_width="@dimen/common_20dp"
                         android:layout_height="@dimen/common_20dp"
                         android:layout_marginLeft="@dimen/common_10dp"
-                        android:background="@drawable/three"/>
+                        android:background="@drawable/toleft"/>
 
                     <TextView
                         android:layout_width="@dimen/common_20dp"
                         android:layout_height="@dimen/common_20dp"
-                        android:layout_marginLeft="@dimen/common_10dp"
                         android:layout_centerVertical="true"
                         android:text="我"
                         android:textColor="@color/snow"/>

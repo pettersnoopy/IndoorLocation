@@ -18,7 +18,54 @@
             android:id="@android:id/tabs"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0" />
+            android:layout_weight="0"
+            android:visibility="gone"/>
+
+        <RadioGroup
+            android:id="@+id/main_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/common_10dp">
+
+            <RadioButton
+                android:id="@+id/tab_icon_weixin"
+                android:checked="true"
+                android:textColor="@color/tab_text"
+                android:drawableTop="@drawable/tab_weixin"
+                android:text="信号"
+                style="@style/tab_button_bg"
+                />
+
+            <RadioButton
+                android:id="@+id/tab_icon_address"
+                android:textColor="@color/tab_text"
+                android:drawableTop="@drawable/tab_address"
+                android:text="位置"
+                style="@style/tab_button_bg"
+                />
+
+
+            <RadioButton
+                android:id="@+id/tab_icon_friend"
+                android:textColor="@color/tab_text"
+                android:drawableTop="@drawable/tab_frd"
+                android:text="消息"
+                style="@style/tab_button_bg"
+                />
+
+
+            <RadioButton
+                android:id="@+id/tab_icon_setting"
+                android:textColor="@color/tab_text"
+                android:drawableTop="@drawable/tab_set"
+                android:text="我"
+                style="@style/tab_button_bg"
+                />
+
+
+        </RadioGroup>
     </LinearLayout>
 
 </TabHost>
