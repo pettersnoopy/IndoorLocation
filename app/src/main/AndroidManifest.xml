@@ -37,6 +37,8 @@
         <activity android:name=".MessageActivity" />
         <activity android:name=".UserInfoActivity" />
         <activity android:name=".ShowInMapActivity" />
+        <activity android:name=".SetPasswordActivity" />
+
 
         <activity
             android:name="com.mob.tools.MobUIShell"

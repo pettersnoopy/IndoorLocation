@@ -53,6 +53,16 @@ public class Dialog extends android.app.Dialog{
 		this.buttonCancelText = buttonCancelText;
 		this.onCancelButtonClickListener = onCancelButtonClickListener;
 	}
+
+
+
+    public void setEditViewInvisible() {
+        contentEditView.setVisibility(View.GONE);
+    }
+
+    public void setMessageVisible() {
+        messageTextView.setVisibility(View.VISIBLE);
+    }
 	
 	
 	@Override

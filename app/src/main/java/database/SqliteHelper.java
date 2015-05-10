@@ -32,12 +32,14 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL( "CREATE TABLE IF NOT EXISTS "+
                         TB_NAME+ "("+
                         UserInfo. ID+ " integer primary key,"+
-                        UserInfo. USERID+ " varchar,"+
-                        UserInfo. TOKEN+ " varchar,"+
-                        UserInfo. TOKENSECRET+ " varchar,"+
                         UserInfo. USERNAME+ " varchar,"+
-                        UserInfo. PASSWORD + " varchar," +
-                        UserInfo. USERICON+ " blob"+
+                        UserInfo. PASSWORD+ " varchar,"+
+                        UserInfo. QRCode+ " blob,"+
+                        UserInfo. POSSION+ " varchar,"+
+                        UserInfo. GENDER + " varchar," +
+                        UserInfo. DISTRICT+ " varchar,"+
+                        UserInfo. USERICON + " blob," +
+                        UserInfo. TOKEN + " varchar" +
                         ")"
         );
         Log. e("Database" ,"onCreate" );

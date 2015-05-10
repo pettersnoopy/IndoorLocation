@@ -37,7 +37,6 @@ public class UserInfoSettingFragment extends Fragment {
     class UserInfoSettingHolder  {
 
         private Bundle bundle;
-
         public UserInfoSettingHolder(Bundle bundle) {
             this.bundle = bundle;
         }
@@ -114,11 +113,11 @@ public class UserInfoSettingFragment extends Fragment {
             } else {
                 String username = objects[0].toString();
                 UserInfo userInfo = UserInfoActivity.dbHelper.GetUserInfo(username);
-                nametextview.setText(userInfo.getUserName());
-                phonetextview.setText(userInfo.getUserId());
+                nametextview.setText(userInfo.getUsername());
+                phonetextview.setText(userInfo.getId());
                 personaltokenview.setText(userInfo.getToken());
-                headimage.setImageDrawable(userInfo.getUserIcon());
-                return userInfo.getUserIcon();
+                headimage.setImageDrawable(ActionManager.byteToDrawable(userInfo.getUsericon()));
+                return userInfo.getUsericon();
             }
         }
 

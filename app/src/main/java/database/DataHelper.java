@@ -42,14 +42,25 @@ public class DataHelper {
         Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.USERNAME
         + "=?", new String[] {name}, null, null, null);
         if (cursor.moveToFirst()) {
+            String id = cursor.getString(cursor.getColumnIndex(UserInfo.ID));
             String username = cursor.getString(cursor.getColumnIndex(UserInfo.USERNAME));
             String password = cursor.getString(cursor.getColumnIndex(UserInfo.PASSWORD));
             byte[] icon = cursor.getBlob(cursor.getColumnIndex(UserInfo.USERICON));
-            Drawable usericon = ActionManager.byteToDrawable(icon);
+            String token = cursor.getString(cursor.getColumnIndex(UserInfo.TOKEN));
+            byte[] qrcode = cursor.getBlob(cursor.getColumnIndex(UserInfo.QRCode));
+            String possion = cursor.getString(cursor.getColumnIndex(UserInfo.POSSION));
+            String gender = cursor.getString(cursor.getColumnIndex(UserInfo.GENDER));
+            String district = cursor.getString(cursor.getColumnIndex(UserInfo.DISTRICT));
             UserInfo userInfo = new UserInfo();
-            userInfo.setUserName(username);
-            userInfo.setPassWord(password);
-            userInfo.setUserIcon(usericon);
+            userInfo.setId(id);
+            userInfo.setUsername(username);
+            userInfo.setPassword(password);
+            userInfo.setUsericon(icon);
+            userInfo.setToken(token);
+            userInfo.setQrcode(qrcode);
+            userInfo.setPossion(possion);
+            userInfo.setGender(gender);
+            userInfo.setDistrict(district);
             return userInfo;
         } else {
             return null;
@@ -65,10 +76,10 @@ public class DataHelper {
         while (!cursor.isAfterLast() && (cursor.getString(1) != null )) {
             UserInfo user = new UserInfo();
             if (!isSimple) {
-                user.setUserName(cursor.getString(4));
+                user.setUsername(cursor.getString(4));
                 ByteArrayInputStream stream = new ByteArrayInputStream(cursor.getBlob(5));
                 Drawable icon = Drawable.createFromStream(stream, "image");
-                user.setUserIcon(icon);
+                user.setUsericon(ActionManager.drawableToByte(icon));
             }
             userList.add(user);
             cursor.moveToNext();
@@ -78,10 +89,10 @@ public class DataHelper {
     }
 
     // 判断users表中的是否包含某个UserID的记录
-    public Boolean HaveUserInfo(String UserId) {
+    public Boolean HaveUserInfo(String Id) {
         Boolean b = false;
-        Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.USERID
-                + "=?", new String[]{UserId}, null, null, null );
+        Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.ID
+                + "=?", new String[]{Id}, null, null, null );
         b = cursor.moveToFirst();
         Log. e("HaveUserInfo", b.toString());
         cursor.close();
@@ -100,8 +111,17 @@ public class DataHelper {
         return b;
     }
 
+    public Boolean HaveUserTel(String tel, String password) {
+        Boolean b = false;
+        Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.ID
+                + "=? and " + UserInfo.PASSWORD + "=?", new String[] {tel, password}, null, null, null);
+        b = cursor.moveToFirst();
+        cursor.close();
+        return b;
+    }
+
     // 更新users表的记录，根据UserId更新用户昵称和用户图标
-    public int UpdateUserInfo(String userName, Bitmap userIcon, String UserId) {
+    public int UpdateUserInfo(String userName, Bitmap userIcon, String Id) {
         ContentValues values = new ContentValues();
         values.put(UserInfo. USERNAME, userName);
         // BLOB类型
@@ -110,7 +130,7 @@ public class DataHelper {
         userIcon.compress(Bitmap.CompressFormat. PNG, 100, os);
         // 构造SQLite的Content对象，这里也可以使用raw
         values.put(UserInfo. USERICON, os.toByteArray());
-        int id = db.update(SqliteHelper. TB_NAME, values, UserInfo.USERID + "=?" , new String[]{UserId});
+        int id = db.update(SqliteHelper. TB_NAME, values, UserInfo.ID + "=?" , new String[]{Id});
         Log. e("UpdateUserInfo2", id + "");
         return id;
     }
@@ -118,12 +138,17 @@ public class DataHelper {
     // 更新users表的记录
     public int UpdateUserInfo(UserInfo user) {
         ContentValues values = new ContentValues();
-        values.put(UserInfo. USERID, user.getUserId());
-        values.put(UserInfo. TOKEN, user.getToken());
-        values.put(UserInfo. TOKENSECRET, user.getTokenSecret());
-        values.put(UserInfo.USERICON, ActionManager.drawableToByte(user.getUserIcon()));
-        int id = db.update(SqliteHelper. TB_NAME, values, UserInfo.USERNAME + "=?"
-                , new String[] {user.getUserName()});
+        values.put(UserInfo.ID, user.getId());
+        values.put(UserInfo.USERNAME, user.getUsername());
+        values.put(UserInfo.PASSWORD, user.getPassword());
+        values.put(UserInfo.QRCode, user.getQrcode());
+        values.put(UserInfo.POSSION, user.getPossion());
+        values.put(UserInfo.GENDER, user.getGender());
+        values.put(UserInfo.DISTRICT, user.getDistrict());
+        values.put(UserInfo.USERICON, user.getUsericon());
+        values.put(UserInfo.TOKEN, user.getToken());
+        int id = db.update(SqliteHelper. TB_NAME, values, UserInfo.ID + "=?"
+                , new String[] {user.getId()});
         Log. e("UpdateUserInfo", id + "success");
         return id;
     }
@@ -131,20 +156,25 @@ public class DataHelper {
     // 添加users表的记录
     public Long SaveUserInfo(UserInfo user) {
         ContentValues values = new ContentValues();
-        values.put(UserInfo. USERID, user.getUserId());
-        values.put(UserInfo. USERNAME, user.getUserName());
-        values.put(UserInfo. PASSWORD, user.getPassWord());
-        values.put(UserInfo. USERICON, ActionManager.drawableToByte(user.getUserIcon()));
-        Long uid = db.insert(SqliteHelper.TB_NAME, UserInfo.USERID, values);
-        Log. e("SaveUserInfo", uid + "" + " " + user.getUserName() + " " + user.getPassWord());
+        values.put(UserInfo.ID, user.getId());
+        values.put(UserInfo.USERNAME, user.getUsername());
+        values.put(UserInfo.PASSWORD, user.getPassword());
+        values.put(UserInfo.QRCode, user.getQrcode());
+        values.put(UserInfo.POSSION, user.getPossion());
+        values.put(UserInfo.GENDER, user.getGender());
+        values.put(UserInfo.DISTRICT, user.getDistrict());
+        values.put(UserInfo.USERICON, user.getUsericon());
+        values.put(UserInfo.TOKEN, user.getToken());
+        Long uid = db.insert(SqliteHelper.TB_NAME, UserInfo.ID, values);
+        Log. e("SaveUserInfo", uid + "" + " " + user.getUsername() + " " + user.getPassword());
 
         return uid;
     }
 
     // 删除users表的记录
-    public int DelUserInfo(String UserId) {
+    public int DelUserInfo(String Id) {
         int id = db.delete(SqliteHelper. TB_NAME,
-                UserInfo. USERID + "=?", new String[]{UserId});
+                UserInfo. ID + "=?", new String[]{Id});
         Log. e("DelUserInfo", id + "");
         return id;
     }
@@ -153,7 +183,7 @@ public class DataHelper {
         UserInfo userInfo = null;
         int size = userList.size();
         for( int i=0;i<size;i++){
-            if(userName.equals(userList.get(i).getUserName())){
+            if(userName.equals(userList.get(i).getUsername())){
                 userInfo = userList.get(i);
                 break;
             }

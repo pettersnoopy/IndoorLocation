@@ -25,6 +25,7 @@ import java.util.HashMap;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
+import common.ActionManager;
 import common.UserInfo;
 import database.DataHelper;
 import fragment.LoginFragment;
@@ -163,9 +164,6 @@ public class SplashActivity extends Activity {
                             HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
                             String country = (String) phoneMap.get("country");
                             String phone = (String) phoneMap.get("phone");
-
-                            // 提交用户信息
-//                            registerUser(country, phone);
                             new InsertDatabaseAsyncTask().execute(phone);
                         }
                     }
@@ -217,7 +215,10 @@ public class SplashActivity extends Activity {
 
         @Override
         protected void onPostExecute(Object o) {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, SetPasswordActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("user", (UserInfo) o);
+            intent.putExtras(bundle);
             startActivity(intent);
             super.onPostExecute(o);
         }
@@ -233,25 +234,19 @@ public class SplashActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
                 return null;
             } else {
-//                String username = objects[0].toString();
-//                String password = objects[1].toString();
-//                UserInfo user = new UserInfo();
-//                user.setUserId("12");
-//                user.setUserName(username);
-//                user.setPassWord(password);
-//                user.setUserIcon(null);
-//                dbHelper.SaveUserInfo(user);
-//                Uname = username;
                 String userId = objects[0].toString();
                 UserInfo user = new UserInfo();
                 user.setId(userId);
-                user.setUserName("");
-                user.setPassWord("");
-                user.setUserIcon(null);
+                user.setUsername("");
+                user.setPassword("");
+                Drawable image = getResources().getDrawable(R.drawable.a3u);
+                byte[] icon = ActionManager.drawableToByte(image);
+                user.setUsericon(icon);
                 dbHelper.SaveUserInfo(user);
+                Uname = "";
                 UserId = userId;
+                return user;
             }
-            return null;
         }
     }
 
@@ -277,7 +272,7 @@ public class SplashActivity extends Activity {
             } else {
                 Log.d("TAG", "已输入");
                 Uname = username.getText().toString();
-                boolean flag = dbHelper.HaveUserName(objects[0].toString(), objects[1].toString());
+                boolean flag = dbHelper.HaveUserTel(objects[0].toString(), objects[1].toString());
                 Log.d("FLAG", flag + "");
                 if (flag) {
                     return true;

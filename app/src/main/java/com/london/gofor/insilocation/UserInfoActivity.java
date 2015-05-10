@@ -190,9 +190,12 @@ public class UserInfoActivity extends FragmentActivity {
                 String password = objects[1].toString();
                 Drawable icon = (Drawable) objects[2];
                 UserInfo user = new UserInfo();
-                user.setUserIcon(icon);
+//                user.setId("1");
+//                user.setToken("firstOne");
+//                user.setTokenSecret("firstOneSceret");
+                user.setUsericon(ActionManager.drawableToByte(icon));
 //                user.setUserId("1");
-                user.setUserName(username);
+                user.setUsername(username);
 //                user.setPassword(password);
                 dbHelper.UpdateUserInfo(user);
                 return true;
@@ -222,7 +225,7 @@ public class UserInfoActivity extends FragmentActivity {
             } else {
                 String username = objects[0].toString();
                 UserInfo userInfo = dbHelper.GetUserInfo(username);
-                return userInfo.getUserIcon();
+                return userInfo.getUsericon();
             }
         }
 
@@ -233,7 +236,8 @@ public class UserInfoActivity extends FragmentActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            mCacheableImageView.setImageDrawable((Drawable) o);
+            Drawable icon = ActionManager.byteToDrawable((byte[]) o);
+            mCacheableImageView.setImageDrawable(icon);
             super.onPostExecute(o);
         }
     }
