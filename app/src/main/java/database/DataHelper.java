@@ -38,9 +38,9 @@ public class DataHelper {
         dbHelper.close();
     }
 
-    public UserInfo GetUserInfo(String name) {
-        Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.USERNAME
-        + "=?", new String[] {name}, null, null, null);
+    public UserInfo GetUserInfo(String Id) {
+        Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.ID
+        + "=?", new String[] {Id}, null, null, null);
         if (cursor.moveToFirst()) {
             String id = cursor.getString(cursor.getColumnIndex(UserInfo.ID));
             String username = cursor.getString(cursor.getColumnIndex(UserInfo.USERNAME));
@@ -99,6 +99,27 @@ public class DataHelper {
         return b;
     }
 
+    // 根据id，查询user表中的UserInfo并返回
+    public UserInfo SelectUser(String id) {
+        Cursor cursor = db.query(SqliteHelper. TB_NAME, null, UserInfo.ID
+                + "=?", new String[]{id}, null, null, null );
+        if (cursor.moveToFirst()) {
+            UserInfo user = new UserInfo();
+            user.setId(cursor.getString(cursor.getColumnIndex(UserInfo.ID)));
+            user.setUsername(cursor.getString(cursor.getColumnIndex(UserInfo.USERNAME)));
+            user.setPassword(cursor.getString(cursor.getColumnIndex(UserInfo.PASSWORD)));
+            user.setQrcode(cursor.getBlob(cursor.getColumnIndex(UserInfo.QRCode)));
+            user.setPossion(cursor.getString(cursor.getColumnIndex(UserInfo.POSSION)));
+            user.setGender(cursor.getString(cursor.getColumnIndex(UserInfo.GENDER)));
+            user.setDistrict(cursor.getString(cursor.getColumnIndex(UserInfo.DISTRICT)));
+            user.setUsericon(cursor.getBlob(cursor.getColumnIndex(UserInfo.USERICON)));
+            user.setToken(cursor.getString(cursor.getColumnIndex(UserInfo.TOKEN)));
+            return user;
+        } else {
+            return null;
+        }
+    }
+
     //
     public Boolean HaveUserName(String UserName, String Password) {
         Boolean b = false;
@@ -134,6 +155,14 @@ public class DataHelper {
         Log. e("UpdateUserInfo2", id + "");
         return id;
     }
+
+    public int UpdateUserInfo(String id, byte[] icon) {
+        UserInfo user = SelectUser(id);
+        user.setUsericon(icon);
+        return UpdateUserInfo(user);
+    }
+
+
 
     // 更新users表的记录
     public int UpdateUserInfo(UserInfo user) {

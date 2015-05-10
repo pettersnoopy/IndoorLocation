@@ -43,32 +43,9 @@ public class SplashActivity extends Activity {
     // 填写从短信SDK应用后台注册得到的APPSECRET
     private static String APPSECRET = "fcfaf1a5df51d9fe4e6121056f607341";
 
-
-    // 短信注册，随机产生头像
-    private static final String[] AVATARS = {
-            "http://tupian.qqjay.com/u/2011/0729/e755c434c91fed9f6f73152731788cb3.jpg",
-            "http://99touxiang.com/public/upload/nvsheng/125/27-011820_433.jpg",
-            "http://img1.touxiang.cn/uploads/allimg/111029/2330264224-36.png",
-            "http://img1.2345.com/duoteimg/qqTxImg/2012/04/09/13339485237265.jpg",
-            "http://diy.qqjay.com/u/files/2012/0523/f466c38e1c6c99ee2d6cd7746207a97a.jpg",
-            "http://img1.touxiang.cn/uploads/20121224/24-054837_708.jpg",
-            "http://img1.touxiang.cn/uploads/20121212/12-060125_658.jpg",
-            "http://img1.touxiang.cn/uploads/20130608/08-054059_703.jpg",
-            "http://diy.qqjay.com/u2/2013/0422/fadc08459b1ef5fc1ea6b5b8d22e44b4.jpg",
-            "http://img1.2345.com/duoteimg/qqTxImg/2012/04/09/13339510584349.jpg",
-            "http://img1.touxiang.cn/uploads/20130515/15-080722_514.jpg",
-            "http://diy.qqjay.com/u2/2013/0401/4355c29b30d295b26da6f242a65bcaad.jpg"
-    };
-
     private Button getSecuritycode;
 
-    private static String Uname;
-
     private static String UserId;
-
-    public static String getUname() {
-        return Uname;
-    }
 
     public static String getUserId() {return UserId;}
 
@@ -145,9 +122,9 @@ public class SplashActivity extends Activity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = userNameText.getText().toString().trim();
+                String id = userNameText.getText().toString().trim();
                 String password = passwordText.getText().toString().trim();
-                new LoginSyncTask(userNameText, errorMsg, register).execute(username, password);
+                new LoginSyncTask(userNameText, errorMsg, register).execute(id, password);
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
@@ -243,7 +220,6 @@ public class SplashActivity extends Activity {
                 byte[] icon = ActionManager.drawableToByte(image);
                 user.setUsericon(icon);
                 dbHelper.SaveUserInfo(user);
-                Uname = "";
                 UserId = userId;
                 return user;
             }
@@ -271,7 +247,7 @@ public class SplashActivity extends Activity {
                 return false;
             } else {
                 Log.d("TAG", "已输入");
-                Uname = username.getText().toString();
+                UserId = objects[0].toString();
                 boolean flag = dbHelper.HaveUserTel(objects[0].toString(), objects[1].toString());
                 Log.d("FLAG", flag + "");
                 if (flag) {

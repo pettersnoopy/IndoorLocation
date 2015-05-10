@@ -55,9 +55,7 @@ public class UserInfoActivity extends FragmentActivity {
     private UserInfoHolder mUserInfoHolder;
     private UserInfoSettingFragment mUserInfoSetting;
     private LinearLayout infopre;
-
-    private String Uname = null;
-    private String UserId = null;
+    private String UserId = SplashActivity.getUserId();
     private Drawable drawable = null;
     private String personaltoken = null;
     private Bundle toFragmentBundle = new Bundle();
@@ -81,6 +79,7 @@ public class UserInfoActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 mFlipper.showPrevious();
+                update(UserId);
             }
         });
         mFlipper = (ViewFlipper) findViewById(R.id.userflipper);
@@ -92,20 +91,17 @@ public class UserInfoActivity extends FragmentActivity {
                 mFlipper.showNext();
             }
         });
-        username.setText(SplashActivity.getUname());
         userId = (TextView) findViewById(R.id.user_id);
         userId.setText(SplashActivity.getUserId());
-        Uname = username.getText().toString();
-        UserId = userId.getText().toString();
+        UserId = SplashActivity.getUserId();
         Uid = userId.getText().toString();
-        toFragmentBundle.putString("name", SplashActivity.getUname());
         toFragmentBundle.putString("userId", SplashActivity.getUserId());
         mCacheableImageView = (CacheableImageView) findViewById(R.id.user_icon);
         if (mUserInfoSetting == null) {
             mUserInfoSetting = new UserInfoSettingFragment();
             mUserInfoSetting.setArguments(toFragmentBundle);
         }
-        new SelectUserInfoSyncTask().execute(Uname);
+        new SelectUserInfoSyncTask().execute(UserId);
         mCacheableImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +137,10 @@ public class UserInfoActivity extends FragmentActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.usersettingframelayout, mUserInfoSetting).commit();
 
+    }
+
+    public void update(String id) {
+        new SelectUserInfoSyncTask().execute(id);
     }
 
     public void initUI() {
@@ -186,18 +186,9 @@ public class UserInfoActivity extends FragmentActivity {
             if (objects == null) {
                 return false;
             } else {
-                String username = objects[0].toString();
-                String password = objects[1].toString();
-                Drawable icon = (Drawable) objects[2];
-                UserInfo user = new UserInfo();
-//                user.setId("1");
-//                user.setToken("firstOne");
-//                user.setTokenSecret("firstOneSceret");
-                user.setUsericon(ActionManager.drawableToByte(icon));
-//                user.setUserId("1");
-                user.setUsername(username);
-//                user.setPassword(password);
-                dbHelper.UpdateUserInfo(user);
+                Drawable image = (Drawable) objects[0];
+                byte[] icon = ActionManager.drawableToByte(image);
+                dbHelper.UpdateUserInfo(UserId, icon);
                 return true;
             }
         }
@@ -223,9 +214,9 @@ public class UserInfoActivity extends FragmentActivity {
             if (objects == null) {
                 return null;
             } else {
-                String username = objects[0].toString();
-                UserInfo userInfo = dbHelper.GetUserInfo(username);
-                return userInfo.getUsericon();
+                String id = objects[0].toString();
+                UserInfo userInfo = dbHelper.GetUserInfo(id);
+                return userInfo;
             }
         }
 
@@ -236,8 +227,13 @@ public class UserInfoActivity extends FragmentActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            Drawable icon = ActionManager.byteToDrawable((byte[]) o);
-            mCacheableImageView.setImageDrawable(icon);
+            if (o instanceof UserInfo) {
+                UserInfo user = (UserInfo) o;
+                Drawable icon = ActionManager.byteToDrawable(user.getUsericon());
+                mCacheableImageView.setImageDrawable(icon);
+                String name = user.getUsername();
+                username.setText(name);
+            }
             super.onPostExecute(o);
         }
     }
@@ -274,7 +270,7 @@ public class UserInfoActivity extends FragmentActivity {
             String userId = extras.getString("userId");
             Bitmap photo = extras.getParcelable("data");
             Drawable drawable = new BitmapDrawable(photo);
-            new UpdateUserInfoSyncTask().execute(Uname, Uid, drawable);
+            new UpdateUserInfoSyncTask().execute(drawable);
             mCacheableImageView.setImageDrawable(drawable);
         }
     }
@@ -339,11 +335,10 @@ public class UserInfoActivity extends FragmentActivity {
         @Override
         public void initUi(View view) {
             username = (TextView) findViewById(R.id.user_name);
-            username.setText(SplashActivity.getUname());
             userId = (TextView) findViewById(R.id.user_id);
             userId.setText(SplashActivity.getUserId());
             mCacheableImageView = (CacheableImageView) view.findViewById(R.id.user_icon);
-            new SelectUserInfoSyncTask().execute(Uname);
+            new SelectUserInfoSyncTask().execute(SplashActivity.getUserId());
             mCacheableImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

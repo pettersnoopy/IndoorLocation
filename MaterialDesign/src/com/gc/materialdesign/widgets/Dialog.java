@@ -54,17 +54,6 @@ public class Dialog extends android.app.Dialog{
 		this.onCancelButtonClickListener = onCancelButtonClickListener;
 	}
 
-
-
-    public void setEditViewInvisible() {
-        contentEditView.setVisibility(View.GONE);
-    }
-
-    public void setMessageVisible() {
-        messageTextView.setVisibility(View.VISIBLE);
-    }
-	
-	
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -91,10 +80,12 @@ public class Dialog extends android.app.Dialog{
 	    setTitle(title);
 
         this.contentEditView = (EditText) findViewById(R.id.edit);
-        setEdit(edit);
+        if (edit == null) contentEditView.setVisibility(View.GONE);
+        else setEdit(edit);
 	    
 	    this.messageTextView = (TextView) findViewById(R.id.message);
-	    setMessage(message);
+        if (message == null) messageTextView.setVisibility(View.GONE);
+	    else setMessage(message);
 	    
 	    this.buttonAccept = (ButtonFlat) findViewById(R.id.button_accept);
 	    buttonAccept.setOnClickListener(new View.OnClickListener() {
