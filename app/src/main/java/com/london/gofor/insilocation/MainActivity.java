@@ -1,8 +1,10 @@
 package com.london.gofor.insilocation;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -131,6 +133,7 @@ public class MainActivity extends TabActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();
+                    new InsideLocationApplication().destroyAll();
                     sureQuite.dismiss();
                 }
             }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

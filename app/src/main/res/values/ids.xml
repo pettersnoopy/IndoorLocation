@@ -40,6 +40,11 @@
     <item name="switchView" type="id">true</item>
     <item name="btninfo" type="id">true</item>
     <item name="btndev" type="id">true</item>
+    <item name="bluetoothflipper" type="id">true</item>
+    <item name="blueinfolayout" type="id">true</item>
+    <item name="signallayout" type="id">true</item>
+    <item name="toblue" type="id">true</item>
+    <item name="signalframelayout" type="id">true</item>
 
     <!--用户界面ids-->
     <item name="gotosetting" type="id">true</item>

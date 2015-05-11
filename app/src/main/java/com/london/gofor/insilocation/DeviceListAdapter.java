@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import com.london.gofor.insilocation.iBeaconClass.iBeacon;
 
 /**
  * Created by Administrator on 2015/4/29.
  */
-public class DeviceListAdapter extends BaseAdapter {
+public class DeviceListAdapter extends BaseAdapter implements Serializable {
 
     // ble 设备队列
     private ArrayList<iBeaconClass.iBeacon> mLeDevice;

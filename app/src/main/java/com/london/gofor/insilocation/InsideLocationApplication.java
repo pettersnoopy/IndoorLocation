@@ -1,11 +1,13 @@
 package com.london.gofor.insilocation;
 
+import android.app.Activity;
 import android.app.Application;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.io.File;
+import java.util.Stack;
 
 import ImageCache.BitmapLruCache;
 import database.DataHelper;
@@ -18,7 +20,20 @@ public class InsideLocationApplication extends Application {
 
     public static final String TAG = "InsideLocationApplication";
 
-    private BitmapLruCache mCache;
+    private static BitmapLruCache mCache;
+
+    private static Stack<Activity> activityStack = new Stack<Activity>();
+
+    public void addActivity(Activity activity) {
+        activityStack.push(activity);
+    }
+
+    public void destroyAll() {
+        if (!activityStack.isEmpty()) {
+            Activity tmp = activityStack.pop();
+            tmp.finish();
+        }
+    }
 
 //    public static DataHelper dbHelper;
 

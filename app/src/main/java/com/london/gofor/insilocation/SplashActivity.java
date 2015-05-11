@@ -35,6 +35,7 @@ import holder.BaseViewHolder;
  * Created by mac on 15/5/4.
  */
 public class SplashActivity extends Activity {
+
     private final String TAG = "SplashActivity";
 
     // 填写从短信SDK应用后台注册得到的APPKEY
@@ -73,12 +74,10 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
         initUi();
         mFlipper.setDisplayedChild(MainPage.login.ordinal());
-
+        new InsideLocationApplication().addActivity(this);
     }
-
     public void initUi() {
         SMSSDK.initSDK(this, APPKEY, APPSECRET);
         dbHelper = new DataHelper(this);
@@ -282,6 +281,5 @@ public class SplashActivity extends Activity {
             super.onPostExecute(o);
         }
     }
-
 
 }
