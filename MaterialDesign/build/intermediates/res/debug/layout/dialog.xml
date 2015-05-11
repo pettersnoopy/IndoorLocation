@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/contentDialog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_centerInParent="true"
         android:background="@drawable/dialog_background"
         android:padding="24dp">
@@ -30,8 +30,7 @@
             android:layout_below="@id/title"
             android:background="@null"
             android:textColor="#000"
-            android:textSize="18sp"
-            android:visibility="gone"/>
+            android:textSize="18sp"/>
 
         <ScrollView
             android:id="@+id/message_scrollView"
@@ -40,8 +39,7 @@
             android:layout_below="@id/title"
             android:paddingBottom="50dp"
             android:scrollbarSize="2dp"
-            android:scrollbarThumbVertical="@color/thumbColor"
-            android:visibility="gone">
+            android:scrollbarThumbVertical="@color/thumbColor">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,17 +50,16 @@
                     android:id="@+id/message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+                    android:text="message here"
                     android:textColor="#000"
                     android:textSize="18sp" />
             </LinearLayout>
         </ScrollView>
 
         <LinearLayout
-            android:layout_below="@id/edit"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/message_scrollView"
             android:layout_marginTop="24dp"
             android:gravity="right"
             android:orientation="horizontal" >

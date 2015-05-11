@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.gc.materialdesign.views.Switch;
 import com.london.gofor.insilocation.DeviceListAdapter;
 import com.london.gofor.insilocation.iBeaconClass.iBeacon;
 
@@ -24,6 +25,7 @@ import java.util.List;
 public class BluetoothInfoActivity extends Activity {
 
     public static final int TAG = Log.d("tag", "stop scan");
+    private Switch switchView;
     private BluetoothAdapter mBluetoothAdapter;
     private DeviceListAdapter deviceListAdatper;
     private ListView lv;
@@ -32,6 +34,8 @@ public class BluetoothInfoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bluetoothinfo);
+        switchView = (Switch) findViewById(R.id.switchView);
+
 
         // 蓝牙操作
         // 判断蓝牙是否可用
@@ -62,6 +66,15 @@ public class BluetoothInfoActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // do something
+            }
+        });
+
+        switchView.setOncheckListener(new Switch.OnCheckListener() {
+            @Override
+            public void onCheck(boolean check) {
+                // open bluetooth
+                if (check == true) mBluetoothAdapter.enable();
+                else mBluetoothAdapter.disable();
             }
         });
     }

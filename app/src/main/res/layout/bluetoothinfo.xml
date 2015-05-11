@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whitesmoke"
@@ -19,8 +20,67 @@
             android:textSize="20sp"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_marginTop="@dimen/common_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@id/dev"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/wl_gray"
+            android:textSize="12sp"
+            android:text="Developed by:"/>
+
+        <TextView
+            android:layout_below="@id/dev"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/wl_gray"
+            android:textSize="20sp"
+            android:text="Inside Location"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@id/bl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bl"/>
+
+    <com.gc.materialdesign.views.Switch
+        android:id="@id/switchView"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1E88E5"
+        materialdesign:check="true" />
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@id/btninfo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/common_10dp"
+        android:layout_width="@dimen/common_200dp"
+        android:layout_height="wrap_content"
+        android:background="#1E88E5"
+        android:text="查看蓝牙信号信息" />
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@id/btndev"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/common_10dp"
+        android:layout_width="@dimen/common_200dp"
+        android:layout_height="wrap_content"
+        android:background="#1E88E5"
+        android:text="更多蓝牙设备" />
+
     <ListView
         android:id="@id/lv"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/common_10dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 

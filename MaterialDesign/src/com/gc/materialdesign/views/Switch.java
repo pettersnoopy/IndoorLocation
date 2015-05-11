@@ -54,7 +54,7 @@ public class Switch extends CustomView {
 
         // Set size of view
         setMinimumHeight(Utils.dpToPx(48, getResources()));
-        setMinimumWidth(Utils.dpToPx(80, getResources()));
+        setMinimumWidth(Utils.dpToPx(180, getResources()));
 
         // Set background Color
         // Color by resource

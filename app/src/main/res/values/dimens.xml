@@ -78,6 +78,7 @@
     <dimen name="share_item_height">45dp</dimen>
 
     <dimen name="common_400dp">400dp</dimen>
+    <dimen name="common_200dp">200dp</dimen>
     <dimen name="common_130dp">130dp</dimen>
     <dimen name="common_120dp">120dp</dimen>
     <dimen name="common_110dp">110dp</dimen>

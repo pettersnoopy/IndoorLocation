@@ -34,6 +34,13 @@
     <item name="registerflipper" type="id">true</item>
     <item name="loginback" type="id">true</item>
 
+    <!--信号界面-->
+    <item name="dev" type="id">true</item>
+    <item name="bl" type="id">true</item>
+    <item name="switchView" type="id">true</item>
+    <item name="btninfo" type="id">true</item>
+    <item name="btndev" type="id">true</item>
+
     <!--用户界面ids-->
     <item name="gotosetting" type="id">true</item>
     <item name="userinfolayout" type="id">true</item>
