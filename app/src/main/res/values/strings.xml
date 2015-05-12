@@ -7,7 +7,7 @@
     <string name="notify_exit_application">Are you sure exit?</string>
     <string name="confirm">退出</string>
     <string name="cancel">取消</string>
-    <string name="unknown_device">unknown_device</string>
+    <string name="unknown_device">Nmlab InsideLocation </string>
     <string name="ibeacon_measure">iBeacon measure</string>
     <string name="name">Rosicky</string>
     <string name="select_from_photo">从相册选择</string>

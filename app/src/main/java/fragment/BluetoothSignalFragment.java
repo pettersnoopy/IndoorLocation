@@ -1,9 +1,13 @@
 package fragment;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,8 +18,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.london.gofor.insilocation.DeviceListAdapter;
+import com.london.gofor.insilocation.MessageActivity;
 import com.london.gofor.insilocation.R;
 import com.london.gofor.insilocation.iBeaconClass;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,6 +33,8 @@ public class BluetoothSignalFragment extends Fragment {
     private BluetoothAdapter mBluetoothAdapter;
     private DeviceListAdapter deviceListAdatper;
     private ListView lv;
+    private NotificationManager notificationManager;
+    private Notification notification;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,8 @@ public class BluetoothSignalFragment extends Fragment {
         if (enable) {
             Log.d("tag", "start scan");
             mBluetoothAdapter.startLeScan(mLeScanCallback);
+
+
         } else {
             Log.d("tag","stop scan");
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
@@ -75,6 +86,41 @@ public class BluetoothSignalFragment extends Fragment {
                 @Override
                 public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
                     final iBeaconClass.iBeacon ibeacon = iBeaconClass.fromScanData(device, rssi, scanRecord);
+                    int r = ibeacon.rssi;
+                    if (ibeacon.proximityUuid.equals("e2c56db5-dffb-48d2-b060-d0f5a71096e0")) {
+                        if (r < -75) {
+                            String tmp = ibeacon.proximityUuid;
+                            Log.d("uuid", tmp);
+                            String uuid = "";
+                            for (int j = 0; j < tmp.length(); j++) {
+                                if (tmp.charAt(j) == '-') break;
+                                char c = tmp.charAt(j);
+                                if (tmp.charAt(j) <= 'z' && tmp.charAt(j) >= 'a') {
+                                    c = (char) (tmp.charAt(j) + 'A' - 'a');
+                                }
+                                uuid += c;
+                            }
+                            if (notificationManager == null)
+                                notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                            if (notification == null)
+                                notification = new Notification(R.drawable.icon, "Entered region: " + ibeacon.name + " " + uuid, System.currentTimeMillis());
+                            notification.flags = Notification.FLAG_AUTO_CANCEL;
+                            Intent intent = new Intent(getActivity(), getActivity().getClass());
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            PendingIntent contentIntent = PendingIntent.getActivity(
+                                    getActivity(),
+                                    R.string.app_name,
+                                    intent,
+                                    PendingIntent.FLAG_UPDATE_CURRENT);
+
+                            notification.setLatestEventInfo(
+                                    getActivity(),
+                                    "Entered region: " + uuid,
+                                    "Welcome to nmlab laboratory!",
+                                    contentIntent);
+                            notificationManager.notify(R.string.app_name, notification);
+                        }
+                    }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

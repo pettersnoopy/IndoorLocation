@@ -136,6 +136,23 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_20dp"
+                android:background="@color/snow">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_10dp"
+                    android:text="可见iBeacons － 点击获取RSSI值"
+                    android:textColor="@color/wl_black"
+                    android:textSize="10sp"
+                    />
+
+                </LinearLayout>
+
             <FrameLayout
                 android:id="@id/signalframelayout"
                 android:layout_width="fill_parent"

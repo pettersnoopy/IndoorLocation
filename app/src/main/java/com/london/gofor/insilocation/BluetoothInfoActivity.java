@@ -1,10 +1,14 @@
 package com.london.gofor.insilocation;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -44,7 +48,6 @@ public class BluetoothInfoActivity extends FragmentActivity {
     private ButtonRectangle moreBluetoothDeviceButton;
     private LinearLayout toblue;
     private Bundle toFragmentBundle = new Bundle();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,38 +121,7 @@ public class BluetoothInfoActivity extends FragmentActivity {
 
     protected void onPause() {
         super.onPause();
-//        scanLeDevice(false);
-//        deviceListAdatper.clear();
-//        Log.d("tag", "onPause");
     }
-
-//    private void scanLeDevice(final boolean enable) {
-//        if (enable) {
-//            Log.d("tag", "start scan");
-//            mBluetoothAdapter.startLeScan(mLeScanCallback);
-//        } else {
-//            Log.d("tag","stop scan");
-//            mBluetoothAdapter.stopLeScan(mLeScanCallback);
-//        }
-//        invalidateOptionsMenu();
-//    }
-//
-//    // Device scan callBack.
-//    private BluetoothAdapter.LeScanCallback mLeScanCallback =
-//            new BluetoothAdapter.LeScanCallback() {
-//                @Override
-//                public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-//                    final iBeacon ibeacon = iBeaconClass.fromScanData(device, rssi, scanRecord);
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Log.d("tag", "onLeScan");
-//                            deviceListAdatper.addDevice(ibeacon);
-//                            deviceListAdatper.notifyDataSetChanged();
-//                        }
-//                    });
-//                }
-//            };
 
     public void gotoPage (BlueInfoPage page) {
         switch (page) {
