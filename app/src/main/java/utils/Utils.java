@@ -63,7 +63,7 @@ public class Utils {
         notification.flags |= Notification.FLAG_AUTO_CANCEL; // 点击清除按钮或点击通知后会自动消失
         notification.defaults |= Notification.DEFAULT_LIGHTS;
         notification.vibrate = new long[]{300, 500};
-        notification.setLatestEventInfo(context, "BluetoothChat", msg, contentIntent);
+        notification.setLatestEventInfo(context, "Inside Location Chat", msg, contentIntent);
 
         nm.notify(NOTIFY_ID1, notification);
     }

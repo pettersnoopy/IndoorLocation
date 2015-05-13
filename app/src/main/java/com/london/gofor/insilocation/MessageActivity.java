@@ -616,7 +616,6 @@ public class MessageActivity extends Activity implements View.OnClickListener {
     }
 
     /**
-     * 显示对方信息
      * @param data
      */
     private void showTargetMessage(HashMap<String, Object> data){
@@ -646,7 +645,6 @@ public class MessageActivity extends Activity implements View.OnClickListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0,1,0,"选择周围用户");
         menu.add(0,2,0,"设置在线用户名");
-        menu.add(0,3,0,"下载最新客户端");
         return super.onCreateOptionsMenu(menu);
     }
 
