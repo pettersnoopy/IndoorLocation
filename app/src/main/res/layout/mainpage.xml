@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Welcome To Inside System"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="@dimen/y60"
                     android:textSize="25dp"/>
 
                 <TextView
@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/y10"
                     android:text="Please login first" />
 
                 <EditText

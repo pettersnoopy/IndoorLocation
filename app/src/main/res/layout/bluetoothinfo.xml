@@ -20,7 +20,7 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/common_50dp"
+                android:layout_height="@dimen/y38"
                 android:background="@color/wl_black">
 
                 <TextView
@@ -33,7 +33,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="@dimen/common_10dp"
+                android:layout_marginTop="@dimen/y8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -74,8 +74,8 @@
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@id/btninfo"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/common_10dp"
-                android:layout_width="@dimen/common_200dp"
+                android:layout_marginTop="@dimen/y8"
+                android:layout_width="@dimen/x150"
                 android:layout_height="wrap_content"
                 android:background="#1E88E5"
                 android:text="查看蓝牙信号信息" />
@@ -83,8 +83,8 @@
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@id/btndev"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/common_10dp"
-                android:layout_width="@dimen/common_200dp"
+                android:layout_marginTop="@dimen/y8"
+                android:layout_width="@dimen/x150"
                 android:layout_height="wrap_content"
                 android:background="#1E88E5"
                 android:text="更多蓝牙设备" />
@@ -100,7 +100,7 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/common_50dp"
+                android:layout_height="@dimen/y38"
                 android:background="@color/wl_black">
 
                 <LinearLayout
@@ -108,18 +108,18 @@
                     android:layout_width="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_height="@dimen/common_20dp"
+                    android:layout_height="@dimen/y16"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="@dimen/common_20dp"
-                        android:layout_height="@dimen/common_20dp"
-                        android:layout_marginLeft="@dimen/common_10dp"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/y16"
+                        android:layout_marginLeft="@dimen/x9"
                         android:background="@drawable/toleft"/>
 
                     <TextView
-                        android:layout_width="@dimen/common_40dp"
-                        android:layout_height="@dimen/common_20dp"
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y16"
                         android:layout_centerVertical="true"
                         android:text="信号"
                         android:textColor="@color/snow"/>
@@ -138,14 +138,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/common_20dp"
+                android:layout_height="@dimen/y16"
                 android:background="@color/snow">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/common_10dp"
+                    android:layout_marginLeft="@dimen/x12"
                     android:text="可见iBeacons － 点击获取RSSI值"
                     android:textColor="@color/wl_black"
                     android:textSize="10sp"

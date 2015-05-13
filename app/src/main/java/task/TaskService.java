@@ -28,7 +28,6 @@ import ui.ChatListViewAdapter;
 
 
 /**
- * 任务处理服务
  * @author Administrator
  */
 public class TaskService extends Service {
@@ -61,6 +60,7 @@ public class TaskService extends Service {
 		}
 		mThread = new TaskThread();
 		mThread.start();
+        Log.e("mThread", "started!");
 	}
 
 	private Handler mServiceHandler = new Handler() {
@@ -138,6 +138,8 @@ public class TaskService extends Service {
 				if (mTaskList.size() > 0) {
 					synchronized (mTaskList) {
 						// 获得任务
+                        Log.e("mTaskList", "count = " + mTaskList.size());
+                        System.out.println("mTaskList + count = " + mTaskList.size());
 						task = mTaskList.get(0);
 						doTask(task);
 					}
@@ -170,6 +172,7 @@ public class TaskService extends Service {
 			isServerMode = true;
 			break;
 		case Task.TASK_START_CONN_THREAD:
+            Log.e("start", "connecting");
 			if (task.mParams == null || task.mParams.length == 0) {
 				break;
 			}
@@ -306,6 +309,7 @@ public class TaskService extends Service {
 			try {
 				tmp = device.createRfcommSocketToServiceRecord(UUID
 						.fromString(UUID_STR));
+                Log.e("device", device.toString());
 			} catch (IOException e) {
 				Log.d(TAG, "createRfcommSocketToServiceRecord error!");
 			}
@@ -324,6 +328,7 @@ public class TaskService extends Service {
 				// Connect the device through the socket. This will block
 				// until it succeeds or throws an exception
 				mmSocket.connect();
+                Log.e("socket connect:", "success!");
 			} catch (IOException connectException) {
 				// Unable to connect; close the socket and get out
 				Log.e(TAG, "Connect server failed");

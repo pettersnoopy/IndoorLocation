@@ -111,7 +111,6 @@ public class ChatListViewAdapter extends BaseAdapter {
 
 			text.setTextColor(Color.WHITE);
 			text.setBackgroundResource(R.drawable.chart_list_item_right_selector);
-			// <emoxxx>
 			Spanned spann = makeChatContent((String) mDatalist.get(position).get(KEY_TEXT));
 			text.setText(spann);
 			ClickListener listener = (ClickListener) text.getTag();

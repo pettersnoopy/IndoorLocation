@@ -7,7 +7,7 @@
     <ListView
         android:id="@id/lv"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/common_10dp"
+        android:layout_marginTop="@dimen/x12"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 

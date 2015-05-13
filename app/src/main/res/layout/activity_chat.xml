@@ -11,6 +11,20 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" >
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/y38"
+            android:background="@color/wl_black">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="@color/snow"
+                android:text="消息"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+
         <ListView
             android:id="@+id/listView1"
             android:layout_width="fill_parent"

@@ -9,11 +9,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -41,6 +43,12 @@ public class MainActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 获取屏幕
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        int screenWidth = screenWidth = display.getWidth();
+        int screenHeight = screenHeight = display.getHeight();
+
         //获取按钮
         main_radiogroup = (RadioGroup) findViewById(R.id.main_radiogroup);
 
@@ -61,6 +69,8 @@ public class MainActivity extends TabActivity {
         main_radiogroup.setOnCheckedChangeListener(checkradio);
 //        setTabs();
     }
+
+
 
     public class checkListener implements RadioGroup.OnCheckedChangeListener {
         @Override

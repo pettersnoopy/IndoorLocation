@@ -58,9 +58,8 @@ import utils.Utils;
  */
 public class MessageActivity extends Activity implements View.OnClickListener {
 
-    private final String TAG = "ChatActivity";
+    private final String TAG = "MessageActivity";
     public static int sAliveCount = 0;
-    public static final String EXTRA_MESSAGER = "cn.com.farsgiht.bluetoothdemo.BUNDLE";
 
     // 蓝牙状态变量
     private static int sBTState = -1;
@@ -154,7 +153,6 @@ public class MessageActivity extends Activity implements View.OnClickListener {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    // 在android中要显示图片信息，必须使用Bitmap位图的对象来装载
                     Bitmap bitmap = BitmapFactory.decodeResource(getResources(), (Integer) mEmoList.get(position).get("img"));
                     ImageSpan imageSpan = new ImageSpan(MessageActivity.this, bitmap);
                     SpannableString spannableString = new SpannableString((String) mEmoList.get(position).get("text"));//face就是图片的前缀名
@@ -575,7 +573,7 @@ public class MessageActivity extends Activity implements View.OnClickListener {
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            Message message;
+            protocol.Message message;
             switch(msg.what){
                 case -1:
                     showToast("没有连接其它用户，点击\"Menu\"扫描并选择周国用户");

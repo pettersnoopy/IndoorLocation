@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/common_10dp">
+            android:paddingTop="@dimen/y12">
 
             <RadioButton
                 android:id="@+id/tab_icon_weixin"
