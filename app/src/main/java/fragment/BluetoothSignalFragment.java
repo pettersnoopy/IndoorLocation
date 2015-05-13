@@ -86,9 +86,10 @@ public class BluetoothSignalFragment extends Fragment {
                 @Override
                 public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
                     final iBeaconClass.iBeacon ibeacon = iBeaconClass.fromScanData(device, rssi, scanRecord);
+
                     int r = ibeacon.rssi;
                     if (ibeacon.proximityUuid.equals("e2c56db5-dffb-48d2-b060-d0f5a71096e0")) {
-                        if (r < -75) {
+                        if (r > -75) {
                             String tmp = ibeacon.proximityUuid;
                             Log.d("uuid", tmp);
                             String uuid = "";
@@ -119,6 +120,8 @@ public class BluetoothSignalFragment extends Fragment {
                                     "Welcome to nmlab laboratory!",
                                     contentIntent);
                             notificationManager.notify(R.string.app_name, notification);
+                        } else {
+                            // leave bluetooth device
                         }
                     }
                     getActivity().runOnUiThread(new Runnable() {
@@ -129,6 +132,7 @@ public class BluetoothSignalFragment extends Fragment {
                             deviceListAdatper.notifyDataSetChanged();
                         }
                     });
+
                 }
             };
 }

@@ -65,4 +65,15 @@
     <item name="phonetextview" type="id">true</item>
     <item name="nametextview" type="id">true</item>
     <item name="personaltokenview" type="id">true</item>
+
+    <!--消息界面-->
+    <item name="chatListView" type="id">true</item>
+    <item name="edit_out" type="id">true</item>
+    <item name="button_send" type="id">true</item>
+    <item name="chatbutton" type="id">true</item>
+    <item name="chattitle" type="id">true</item>
+
+
+
+
 </resources>

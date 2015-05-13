@@ -39,6 +39,8 @@
         <activity android:name=".UserInfoActivity" />
         <activity android:name=".ShowInMapActivity" />
         <activity android:name=".SetPasswordActivity" />
+        <activity android:name=".SelectDevice" />
+        <activity android:name=".DownloadActivity"/>
 
 
         <activity

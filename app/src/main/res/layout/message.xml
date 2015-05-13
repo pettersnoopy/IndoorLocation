@@ -19,4 +19,48 @@
             android:textSize="20sp"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_alignParentTop="true"
+            android:id="@id/chattitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+        <ListView
+            android:layout_below="@id/chattitle"
+            android:id="@id/chatListView"
+            android:layout_above="@id/chatbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            </ListView>
+        <RelativeLayout
+            android:id="@id/chatbutton"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@id/edit_out"
+                android:layout_toLeftOf="@id/button_send"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@id/button_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送"
+                android:layout_alignParentRight="true" >
+
+                </com.gc.materialdesign.views.ButtonRectangle>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
 </LinearLayout>
