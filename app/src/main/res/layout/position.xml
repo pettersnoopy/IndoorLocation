@@ -19,4 +19,20 @@
             android:textSize="20sp"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/map">
+
+        <ImageView
+            android:id="@id/zero"
+            android:layout_width="@dimen/x10"
+            android:layout_height="@dimen/y10"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/userbackground"/>
+
+
+    </RelativeLayout>
+
 </LinearLayout>

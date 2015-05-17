@@ -73,6 +73,8 @@
     <item name="chatbutton" type="id">true</item>
     <item name="chattitle" type="id">true</item>
 
+    <!--地图界面-->
+    <item name="zero" type="id">true</item>
 
 
 
