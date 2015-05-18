@@ -25,12 +25,23 @@
         android:background="@drawable/map">
 
         <ImageView
+            android:id="@id/startlocate"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/y40"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y15"
+            android:background="@drawable/locate"/>
+
+        <widget.CircleImageView
             android:id="@id/zero"
             android:layout_width="@dimen/x10"
             android:layout_height="@dimen/y10"
+            android:layout_marginRight="@dimen/x12"
+            android:layout_marginBottom="@dimen/y9"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/userbackground"/>
+            android:layout_alignParentRight="true"/>
 
 
     </RelativeLayout>

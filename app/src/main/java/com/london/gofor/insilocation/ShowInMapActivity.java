@@ -2,8 +2,12 @@ package com.london.gofor.insilocation;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -16,21 +20,21 @@ import android.widget.ImageView;
 public class ShowInMapActivity extends Activity{
 
     private ImageView zero;
+    private ImageView startlocate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.position);
         zero = (ImageView) findViewById(R.id.zero);
+        startlocate = (ImageView) findViewById(R.id.startlocate);
+        startlocate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // start to locate
+            }
+        });
         startFlick(zero);
-    }
-
-    class MapView extends View {
-        Paint paint;
-
-        public MapView(Context context) {
-            super(context);
-        }
     }
 
     public void startFlick(View view) {

@@ -75,6 +75,7 @@
 
     <!--地图界面-->
     <item name="zero" type="id">true</item>
+    <item name="startlocate" type="id">true</item>
 
 
 
